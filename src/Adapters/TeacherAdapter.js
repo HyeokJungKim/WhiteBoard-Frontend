@@ -1,7 +1,8 @@
+const API = 'http://localhost:3000'
 class TeacherAdapter{
 
   static register(teacherData){
-    return fetch("http://localhost:3000/teachers",{
+    return fetch(`${API}/teachers`,{
       method: "POST",
       headers: {"Content-Type": 'application/json'},
       body: JSON.stringify(teacherData)

@@ -15,7 +15,6 @@ class App extends Component {
           <p>Hello</p>
         </Route>
       </Switch>
-
     )
   }
 }
