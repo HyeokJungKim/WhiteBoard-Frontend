@@ -1,7 +1,7 @@
 const initialState= {
   isTeacher:null,
-  classrooms:null,
-  assignments:null,
+  classrooms:[],
+  assignments:[],
 }
 
 const initialReducer = (state = initialState, action) =>{

@@ -3,6 +3,8 @@ import { Accordion, Icon } from 'semantic-ui-react'
 
 import {connect} from 'react-redux'
 
+import TeacherAdapter from '../Adapters/TeacherAdapter'
+
 class Sidebar extends Component{
   state = { activeIndex: -1 }
 
@@ -13,9 +15,15 @@ class Sidebar extends Component{
       this.setState({ activeIndex: newIndex })
     }
 
+    componentDidMount = () => {
+      TeacherAdapter.getClasses()
+      .then(classes => console.log(classes))
+    }
+
     render(){
-      console.log(this.props)
       const { activeIndex } = this.state
+      console.log(this.props);
+      // const classNames = this.props.classrooms.map(classroom => <p>{classroom.name}</p>)
       return (
         <div>
           <Accordion attached="bottom" fluid styled>
@@ -25,7 +33,7 @@ class Sidebar extends Component{
               Classes
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0}>
-              {/* FILL */}
+              {/**/}
             </Accordion.Content>
 
             <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>

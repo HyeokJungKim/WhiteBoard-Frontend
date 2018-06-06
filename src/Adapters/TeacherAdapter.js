@@ -4,7 +4,10 @@ class TeacherAdapter{
   static register(teacherData){
     return fetch(`${API}/teachers`,{
       method: "POST",
-      headers: {"Content-Type": 'application/json'},
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      },
       body: JSON.stringify(teacherData)
     })
     .then(resp => resp.json())
@@ -13,11 +16,32 @@ class TeacherAdapter{
   static login(teacherData){
     return fetch(`${API}/teacherLogin`,{
       method: "POST",
-      headers: {"Content-Type": 'application/json'},
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      },
       body: JSON.stringify(teacherData)
     })
     .then(resp => resp.json())
   }
+
+  static getClasses(){
+    return fetch(`${API}/classrooms/teacher/${localStorage.getItem('id')}`, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+        "Authorization": `${localStorage.getItem('token')}`
+      }
+    })
+    .then(resp => resp.json())
+  }
+
+
+
+
 }
+
+
 
 export default TeacherAdapter

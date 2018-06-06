@@ -46,6 +46,7 @@ class RegistrationForm extends Component{
             localStorage.setItem("token", json.token)
             localStorage.setItem("id", json.id)
             localStorage.setItem("name", json.name)
+            localStorage.setItem("forWhom", this.state.forWhom)
             this.props.initialize(json, this.state.forWhom)
             this.props.history.push('/home')
           }
