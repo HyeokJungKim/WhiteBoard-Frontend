@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+
 import {Form, Button, Divider} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
+
+import initialize from '../Redux/ActionCreators'
+import {connect} from 'react-redux'
 
 class RegistrationForm extends Component{
   state={
@@ -30,6 +34,15 @@ class RegistrationForm extends Component{
     if(password === passwordConfirmation){
       const teacherInfo = {firstName, lastName, username, password}
       TeacherAdapter.register(teacherInfo)
+        .then(json => {
+          console.log(json);
+          if(json.errors){
+            console.log("ERRORS HAVE BEEN MADE");
+          } else {
+            this.props.initialize(json)
+            console.log(json);
+          }
+        })
     } else{
       this.setState({errors:"Password confirmation does not match password."})
     }
@@ -54,4 +67,12 @@ class RegistrationForm extends Component{
   }
 }
 
-export default RegistrationForm
+const mapDispatchToProps = (dispatch) => {
+  return {
+    initialize: (personObj) =>{
+      return dispatch(initialize(personObj))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(RegistrationForm)
