@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Menu, Segment} from 'semantic-ui-react'
 import RegistrationForm from './RegistrationForm'
+import LoginForm from './LoginForm'
 
 class LoginRegistrationForm extends Component{
   state={
@@ -20,7 +21,7 @@ class LoginRegistrationForm extends Component{
           <Menu.Item name='Register' onClick={this.handleClick} active={activeItem ==='Register'}></Menu.Item>
         </Menu>
         <Segment attached="bottom">
-          {activeItem === 'Login' ? <p>Login</p> : <RegistrationForm/>}
+          {activeItem === 'Login' ? <LoginForm {...this.props}/> : <RegistrationForm {...this.props}/>}
         </Segment>
     </div>
     )

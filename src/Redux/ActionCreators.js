@@ -1,6 +1,6 @@
 const initialize = (personObj, forWhom) => {
   let isTeacher = false
-  if(forWhom == "teacher"){
+  if(forWhom === "teacher"){
     isTeacher = true
   }
   return{

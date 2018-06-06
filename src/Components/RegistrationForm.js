@@ -37,8 +37,8 @@ class RegistrationForm extends Component{
   handleClick = (event) => {
     const {firstName, lastName, username, password, passwordConfirmation} = this.state
     if(password === passwordConfirmation){
-      const teacherInfo = {firstName, lastName, username, password}
-      TeacherAdapter.register(teacherInfo)
+      const userInfo = {firstName, lastName, username, password}
+      TeacherAdapter.register(userInfo)
         .then(json => {
           if(json.errors){
             this.setState({errors: json.errors})
@@ -47,6 +47,7 @@ class RegistrationForm extends Component{
             localStorage.setItem("id", json.id)
             localStorage.setItem("username", json.username)
             this.props.initialize(json, this.state.forWhom)
+            this.props.history.push('/home')
           }
         })
     } else{

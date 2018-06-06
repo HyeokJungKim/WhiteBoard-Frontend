@@ -17,7 +17,7 @@ class AppContainer extends Component{
               </Grid.Column>
 
               <Grid.Column width={7}>
-                <LoginRegistrationForm/>
+                <LoginRegistrationForm {...this.props}/>
               </Grid.Column>
             </Grid.Row>
           </Grid>

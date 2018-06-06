@@ -9,6 +9,15 @@ class TeacherAdapter{
     })
     .then(resp => resp.json())
   }
+
+  static login(teacherData){
+    return fetch(`${API}/teacherLogin`,{
+      method: "POST",
+      headers: {"Content-Type": 'application/json'},
+      body: JSON.stringify(teacherData)
+    })
+    .then(resp => resp.json())
+  }
 }
 
 export default TeacherAdapter
