@@ -13,10 +13,10 @@ class AppContainer extends Component{
         <Container>
           <Grid>
             <Grid.Row>
-              <Grid.Column width={10}>
+              <Grid.Column width={9}>
               </Grid.Column>
 
-              <Grid.Column width={6}>
+              <Grid.Column width={7}>
                 <LoginRegistrationForm/>
               </Grid.Column>
             </Grid.Row>

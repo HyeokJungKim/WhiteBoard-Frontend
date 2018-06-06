@@ -7,11 +7,10 @@ class Header extends Component{
   }
 
   login = () => {
-    this.props.history.push('/login')
+
   }
 
   render(){
-    console.log(this.props);
     return(
       <Menu>
         <Menu.Menu position='right'>
