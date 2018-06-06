@@ -7,7 +7,12 @@ class Header extends Component{
   }
 
   login = () => {
+    this.props.history.push('/login')
+  }
 
+  logout = () => {
+    localStorage.clear()
+    this.props.history.push('/')
   }
 
   render(){
@@ -15,10 +20,21 @@ class Header extends Component{
       <Menu>
         <Menu.Menu position='right'>
           <Menu.Item>
-            <Button primary onClick={this.registration}> Register </Button>
+            {localStorage.getItem('name') ?
+              <p>Logged in as: {`${localStorage.getItem('name')}`}</p>
+              :
+              <Button primary onClick={this.registration}> Register </Button>
+            }
+
+
           </Menu.Item>
           <Menu.Item>
-            <Button primary onClick={this.login}> Login </Button>
+            {localStorage.getItem('name') ?
+              <Button primary onClick={this.logout}> Logout </Button>
+              :
+              <Button primary onClick={this.login}> Login </Button>
+            }
+
           </Menu.Item>
         </Menu.Menu>
       </Menu>

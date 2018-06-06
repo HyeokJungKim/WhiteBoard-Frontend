@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import AppContainer from './Containers/AppContainer'
-import {Switch, Route} from 'react-router-dom'
+import HomeContainer from './Containers/HomeContainer'
+
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 class App extends Component {
 
   render() {
     return (
       <Switch>
-        <Route path='/' exact
-          render={(props) => <AppContainer {...props}/>}>
+        <Route path='/' exact render={(props) => <AppContainer {...props}/>}>
         </Route>
+
         <Route path='/register'>
-          <p>Hello</p>
+          <p>REGISTER PATH IN APP.JS</p>
         </Route>
+
+
+        <Route path='/login'>
+          <p>LOGIN PATH IN APP.JS</p>
+        </Route>
+
+
+        {localStorage.getItem('token') ?
+          <Route path='/home' render={(props) => <HomeContainer {...props}/> }></Route>
+            :
+          <Redirect to='/'/> }
       </Switch>
     )
   }

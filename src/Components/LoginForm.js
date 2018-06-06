@@ -42,7 +42,7 @@ class LoginForm extends Component{
         } else {
           localStorage.setItem("token", json.token)
           localStorage.setItem("id", json.id)
-          localStorage.setItem("username", json.username)
+          localStorage.setItem("name", json.name)
           this.props.initialize(json, this.state.forWhom)
           this.props.history.push('/home')
         }
