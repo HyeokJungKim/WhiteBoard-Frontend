@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Form, Button, Divider} from 'semantic-ui-react'
+import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 
 import initialize from '../Redux/ActionCreators'
@@ -14,7 +14,8 @@ class RegistrationForm extends Component{
     password:"",
     passwordConfirmation:"",
     isDisabled:true,
-    errors:""
+    errors:[],
+    forWhom: "teacher",
   }
 
   handleChange = (event) => {
@@ -29,36 +30,47 @@ class RegistrationForm extends Component{
     })
   }
 
+  handleRadio = (event, {value}) => {
+    this.setState({forWhom: value})
+  }
+
   handleClick = (event) => {
     const {firstName, lastName, username, password, passwordConfirmation} = this.state
     if(password === passwordConfirmation){
       const teacherInfo = {firstName, lastName, username, password}
       TeacherAdapter.register(teacherInfo)
         .then(json => {
-          console.log(json);
           if(json.errors){
-            console.log("ERRORS HAVE BEEN MADE");
+            this.setState({errors: json.errors})
           } else {
-            this.props.initialize(json)
-            console.log(json);
+            localStorage.setItem("token", json.token)
+            localStorage.setItem("id", json.id)
+            localStorage.setItem("username", json.username)
+            this.props.initialize(json, this.state.forWhom)
           }
         })
     } else{
-      this.setState({errors:"Password confirmation does not match password."})
+      this.setState({errors:["Password confirmation does not match password."]})
     }
-    // TeacherAdapter.register()
   }
 
   render(){
+    const errors = this.state.errors.map(error => <h4>{error}</h4>)
     return(
       <div>
-        <h4>{this.state.errors}</h4>
+        {errors}
         <Form>
           <Form.Input onChange={this.handleChange} value={this.state.firstName} label='First Name' name="firstName" placeholder="First Name" />
           <Form.Input onChange={this.handleChange} value={this.state.lastName} label='Last Name' name="lastName" placeholder="Last Name" />
           <Form.Input onChange={this.handleChange} value={this.state.username} label="Username" name="username" placeholder="Username" />
           <Form.Input onChange={this.handleChange} value={this.state.password} type="password" label="Password" name="password" placeholder="Password" />
           <Form.Input onChange={this.handleChange} value={this.state.passwordConfirmation} type="password" label="Password Confirmation" name="passwordConfirmation" placeholder="Password Confirmation" />
+          <Form.Field>
+            <Radio label="I am a teacher" value="teacher" name="forWhom" checked={this.state.forWhom === "teacher"} onChange={this.handleRadio}/>
+          </Form.Field>
+          <Form.Field>
+            <Radio label="I am a student" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
+          </Form.Field>
         </Form>
         <Divider hidden/>
         <Button onClick={this.handleClick} disabled={this.state.isDisabled} content="Register"/>
@@ -69,8 +81,8 @@ class RegistrationForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initialize: (personObj) =>{
-      return dispatch(initialize(personObj))
+    initialize: (personObj, forWhom) =>{
+      return dispatch(initialize(personObj, forWhom))
     }
   }
 }

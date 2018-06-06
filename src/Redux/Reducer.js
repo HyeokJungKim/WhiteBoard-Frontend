@@ -7,7 +7,7 @@ const initialState= {
 const initialReducer = (state = initialState, action) =>{
   switch(action.type){
     case 'INITIALIZE':
-    console.log("HIT FROM INITILAIZE");
+      console.log(action.payload);
       return {...state, ...action.payload}
     default:
       return state
