@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {Container,Grid} from 'semantic-ui-react'
 import Header from '../Components/Header'
 import LoginRegistrationForm from '../Components/LoginRegistrationForm'
-
 
 class AppContainer extends Component{
   render(){

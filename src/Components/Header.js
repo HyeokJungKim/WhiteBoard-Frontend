@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {Menu, Button} from 'semantic-ui-react'
 
 class Header extends Component{

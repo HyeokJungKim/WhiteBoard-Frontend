@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 
-import initialize from '../Redux/ActionCreators'
+import {initialize} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 class RegistrationForm extends Component{

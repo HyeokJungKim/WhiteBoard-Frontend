@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {Menu, Segment} from 'semantic-ui-react'
+
 import RegistrationForm from './RegistrationForm'
 import LoginForm from './LoginForm'
 

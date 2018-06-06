@@ -1,4 +1,4 @@
-const initialize = (personObj, forWhom) => {
+export const initialize = (personObj, forWhom) => {
   let isTeacher = false
   if(forWhom === "teacher"){
     isTeacher = true
@@ -12,5 +12,3 @@ const initialize = (personObj, forWhom) => {
     }
   }
 }
-
-export default initialize
