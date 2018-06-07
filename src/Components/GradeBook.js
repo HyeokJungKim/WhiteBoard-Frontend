@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table} from 'semantic-ui-react'
+import {Container, Table, Button, Icon} from 'semantic-ui-react'
 
 class GradeBook extends Component{
+  state={
+    addStudent: false
+  }
 
   render(){
     const {displayedClassroom} = this.props
@@ -37,6 +40,18 @@ class GradeBook extends Component{
 
           <Table.Body>
             {students}
+                {this.state.addStudent ?
+                  <p>HIOS</p>
+                  :
+                  <Table.Row>
+                    <Table.Cell>
+                      <Button>
+                        <Icon centered name="plus"></Icon>
+                      </Button>
+                    </Table.Cell>
+                  </Table.Row>
+                }
+
           </Table.Body>
 
         </Table>

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { Accordion, Icon, List } from 'semantic-ui-react'
 
-import {connect} from 'react-redux'
-
-
 const titleize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
 }

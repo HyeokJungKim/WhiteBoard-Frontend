@@ -1,5 +1,5 @@
 const initialState = {
-  isTeacher:null,
+  isTeacher: null,
   classrooms:[],
   displayedClassroom:{},
 }
