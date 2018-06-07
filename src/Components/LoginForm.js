@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 
-import {initialize} from '../Redux/ActionCreators'
+import {initializeTeacher} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 class LoginForm extends Component{
@@ -44,7 +44,7 @@ class LoginForm extends Component{
           localStorage.setItem("id", json.id)
           localStorage.setItem("name", json.name)
           localStorage.setItem("forWhom", this.state.forWhom)
-          this.props.initialize(json, this.state.forWhom)
+          this.props.initializeTeacher(json, this.state.forWhom)
           this.props.history.push('/home')
         }
       })
@@ -74,8 +74,8 @@ class LoginForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initialize: (personObj, forWhom) =>{
-      return dispatch(initialize(personObj, forWhom))
+    initializeTeacher: (personObj, forWhom) =>{
+      return dispatch(initializeTeacher(personObj, forWhom))
     }
   }
 }

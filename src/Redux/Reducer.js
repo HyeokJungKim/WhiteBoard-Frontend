@@ -1,13 +1,12 @@
-const initialState= {
+const initialState = {
   isTeacher:null,
   classrooms:[],
   displayedClassroom:{},
-  displayedClassroomInfo:[]
 }
 
 const reducer = (state = initialState, action) =>{
   switch(action.type){
-    case 'INITIALIZE':
+    case 'INITIALIZETEACHER':
       return {...state, ...action.payload}
     case 'CHANGEDISPLAY':
       return {...state, ...action.payload}

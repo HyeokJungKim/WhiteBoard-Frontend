@@ -7,7 +7,7 @@ import MainContainer from './MainContainer'
 
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import {connect} from 'react-redux'
-import {initialize, changeDisplayedClassroom} from '../Redux/ActionCreators'
+import {initializeTeacher, changeDisplayedClassroom} from '../Redux/ActionCreators'
 
 class HomeContainer extends Component{
   state={
@@ -20,7 +20,7 @@ class HomeContainer extends Component{
       if(classes.errors){
         // FIXME: RENDER ERROR
       } else{
-        this.props.initialize(classes, localStorage.getItem("forWhom"))
+        this.props.initializeTeacher(classes, localStorage.getItem("forWhom"))
       }
     })
   }
@@ -62,8 +62,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initialize: (personObj, forWhom) =>{
-      return dispatch(initialize(personObj, forWhom))
+    initializeTeacher: (personObj, forWhom) =>{
+      return dispatch(initializeTeacher(personObj, forWhom))
     },
     changeDisplayedClassroom: (classObj) =>{
       return dispatch(changeDisplayedClassroom(classObj))

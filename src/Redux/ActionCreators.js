@@ -1,33 +1,25 @@
 import ClassAdapter from '../Adapters/ClassAdapter'
 
-export const initialize = (personObj, forWhom) => {
+export const initializeTeacher = (classroomJson, forWhom) => {
   let isTeacher = false
   if(forWhom === "teacher"){
     isTeacher = true
   }
   return{
-    type: 'INITIALIZE',
+    type: 'INITIALIZETEACHER',
     payload:{
       isTeacher: isTeacher,
-      classrooms: personObj.classrooms,
-      displayedClassroom: personObj.classrooms[0]
+      classrooms: classroomJson.classrooms,
+      displayedClassroom: {},
     }
   }
 }
 
-
-
 export const changeDisplayedClassroom = (classObj) => {
-  return (dispatch) => {
-    ClassAdapter.getStudents(classObj.id)
-    .then(resp => {
-      dispatch({
-        type: 'CHANGEDISPLAY',
-        payload:{
-          displayedClassroom: classObj,
-          displayedClassroomInfo: resp
-        }
-      })
-    })
+  return{
+    type: 'CHANGEDISPLAY',
+    payload:{
+      displayedClassroom: classObj,
+    }
   }
 }
