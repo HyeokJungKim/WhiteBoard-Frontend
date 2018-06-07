@@ -8,7 +8,6 @@ export const initialize = (personObj, forWhom) => {
     payload:{
       isTeacher: isTeacher,
       classrooms: personObj.classrooms,
-      assignments: personObj.assignments
     }
   }
 }

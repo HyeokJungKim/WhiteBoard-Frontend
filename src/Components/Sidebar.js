@@ -1,42 +1,42 @@
 import React, { Component } from 'react'
-import { Accordion, Icon } from 'semantic-ui-react'
+import { Accordion, Icon, List } from 'semantic-ui-react'
 
-import {connect} from 'react-redux'
-
-import TeacherAdapter from '../Adapters/TeacherAdapter'
+const titleize = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
+}
 
 class Sidebar extends Component{
   state = { activeIndex: -1 }
 
-    handleClick = (event, titleProps) => {
+    handleAccordian = (event, titleProps) => {
       const { index } = titleProps
       const { activeIndex } = this.state
       const newIndex = activeIndex === index ? -1 : index
       this.setState({ activeIndex: newIndex })
     }
 
-    componentDidMount = () => {
-      TeacherAdapter.getClasses()
-      .then(classes => console.log(classes))
+    onClick = (event) =>{
+      this.props.onClick(event.target.id)
     }
 
     render(){
       const { activeIndex } = this.state
-      console.log(this.props);
-      // const classNames = this.props.classrooms.map(classroom => <p>{classroom.name}</p>)
+      const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.onClick} id={classroom.id}>{titleize(classroom.name)}</List.Content></List.Item>)
       return (
         <div>
           <Accordion attached="bottom" fluid styled>
 
-            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
+            <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleAccordian}>
               <Icon name='dropdown' />
               Classes
             </Accordion.Title>
             <Accordion.Content active={activeIndex === 0}>
-              {/**/}
+              <List>
+                {classNames}
+              </List>
             </Accordion.Content>
 
-            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
+            <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
               <Icon name='dropdown' />
               Grades
             </Accordion.Title>
@@ -44,7 +44,7 @@ class Sidebar extends Component{
               {/* FILL */}
             </Accordion.Content>
 
-            <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
+            <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>
               <Icon name='dropdown' />
               Schedule
             </Accordion.Title>
@@ -57,12 +57,6 @@ class Sidebar extends Component{
     }
 }
 
-const mapStateToProps = (state) => {
-  return{
-    isTeacher:state.isTeacher,
-    classrooms:state.classrooms,
-    assignments:state.assignments,
-  }
-}
 
-export default connect(mapStateToProps)(Sidebar)
+
+export default Sidebar

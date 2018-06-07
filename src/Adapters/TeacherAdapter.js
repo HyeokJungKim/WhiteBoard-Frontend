@@ -26,7 +26,7 @@ class TeacherAdapter{
   }
 
   static getClasses(){
-    return fetch(`${API}/classrooms/teacher/${localStorage.getItem('id')}`, {
+    return fetch(`${API}/teachers/${localStorage.getItem('id')}/classrooms`, {
       method: "GET",
       headers: {
         'Accept': 'application/json',
