@@ -18,10 +18,16 @@ export const initialize = (personObj, forWhom) => {
 
 
 export const changeDisplayedClassroom = (classObj) => {
-  return {
-    type: 'CHANGEDISPLAY',
-    payload:{
-      displayedClassroom: classObj,
-    }
+  return (dispatch) => {
+    ClassAdapter.getStudents(classObj.id)
+    .then(resp => {
+      dispatch({
+        type: 'CHANGEDISPLAY',
+        payload:{
+          displayedClassroom: classObj,
+          displayedClassroomInfo: resp
+        }
+      })
+    })
   }
 }
