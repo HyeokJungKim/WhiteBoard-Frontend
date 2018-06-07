@@ -1,16 +1,10 @@
-import ClassAdapter from '../Adapters/ClassAdapter'
-
-export const initializeTeacher = (classroomJson, forWhom) => {
-  let isTeacher = false
-  if(forWhom === "teacher"){
-    isTeacher = true
-  }
+export const initializeTeacher = (classroomJson) => {
   return{
     type: 'INITIALIZETEACHER',
     payload:{
-      isTeacher: isTeacher,
+      isTeacher: true,
       classrooms: classroomJson.classrooms,
-      displayedClassroom: {},
+      displayedClassroom: classroomJson.classrooms[0],
     }
   }
 }

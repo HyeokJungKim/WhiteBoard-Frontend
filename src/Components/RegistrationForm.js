@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
+import StudentAdapter from '../Adapters/StudentAdapter'
 
 import {initializeTeacher} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
@@ -38,19 +39,37 @@ class RegistrationForm extends Component{
     const {firstName, lastName, username, password, passwordConfirmation} = this.state
     if(password === passwordConfirmation){
       const userInfo = {firstName, lastName, username, password}
-      TeacherAdapter.register(userInfo)
+
+      if(this.state.forWhom === "teacher"){
+        TeacherAdapter.register(userInfo)
         .then(json => {
-          if(json.errors){
-            this.setState({errors: json.errors})
+          if(json.error){
+            this.setState({error:json.error})
           } else {
             localStorage.setItem("token", json.token)
             localStorage.setItem("id", json.id)
             localStorage.setItem("name", json.name)
             localStorage.setItem("forWhom", this.state.forWhom)
-            this.props.initializeTeacher(json, this.state.forWhom)
+            this.props.initializeTeacher(json)
             this.props.history.push('/home')
           }
         })
+      } else{
+        StudentAdapter.register(userInfo)
+        .then(json => {
+          if(json.error){
+            this.setState({error:json.error})
+          } else {
+            localStorage.setItem("token", json.token)
+            localStorage.setItem("id", json.id)
+            localStorage.setItem("name", json.name)
+            localStorage.setItem("forWhom", this.state.forWhom)
+            this.props.history.push('/home')
+            // this.props.initializeTeacher(json)
+          }
+        })
+      }
+
     } else{
       this.setState({errors:["Password confirmation does not match password."]})
     }

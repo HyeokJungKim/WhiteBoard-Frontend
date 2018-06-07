@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
+import StudentAdapter from '../Adapters/StudentAdapter'
 
 import {initializeTeacher} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
@@ -35,7 +36,8 @@ class LoginForm extends Component{
   handleClick = (event) => {
     const {username, password} = this.state
     const userInfo = {username, password}
-    TeacherAdapter.login(userInfo)
+    if(this.state.forWhom === "teacher"){
+      TeacherAdapter.login(userInfo)
       .then(json => {
         if(json.error){
           this.setState({error:json.error})
@@ -44,10 +46,26 @@ class LoginForm extends Component{
           localStorage.setItem("id", json.id)
           localStorage.setItem("name", json.name)
           localStorage.setItem("forWhom", this.state.forWhom)
-          this.props.initializeTeacher(json, this.state.forWhom)
+          this.props.initializeTeacher(json)
           this.props.history.push('/home')
         }
       })
+    }else{
+      StudentAdapter.login(userInfo)
+      .then(json => {
+        if(json.error){
+          this.setState({error:json.error})
+        } else {
+          localStorage.setItem("token", json.token)
+          localStorage.setItem("id", json.id)
+          localStorage.setItem("name", json.name)
+          localStorage.setItem("forWhom", this.state.forWhom)
+          this.props.history.push('/home')
+          // this.props.initializeTeacher(json, this.state.forWhom)
+        }
+      })
+    }
+
   }
 
   render(){
