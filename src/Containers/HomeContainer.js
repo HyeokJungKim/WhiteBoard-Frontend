@@ -7,11 +7,11 @@ import MainContainer from './MainContainer'
 
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import {connect} from 'react-redux'
-import {initialize} from '../Redux/ActionCreators'
+import {initialize, changeDisplayedClassroom} from '../Redux/ActionCreators'
 
 class HomeContainer extends Component{
   state={
-    displayedClassroom: {}
+    display: "",
   }
 
   componentDidMount = () => {
@@ -20,7 +20,6 @@ class HomeContainer extends Component{
       if(classes.errors){
         // FIXME: RENDER ERROR
       } else{
-        this.setState({displayedClassroom: classes.classrooms[0]})
         this.props.initialize(classes, localStorage.getItem("forWhom"))
       }
     })
@@ -28,7 +27,7 @@ class HomeContainer extends Component{
 
   onClick = (id) => {
     let classToDisplay = this.props.classrooms.find(classroom => classroom.id == id)
-    this.setState({displayedClassroom: classToDisplay})
+    this.props.changeDisplayedClassroom(classToDisplay)
   }
 
   render(){
@@ -43,7 +42,7 @@ class HomeContainer extends Component{
               </Grid.Column>
 
               <Grid.Column width={12}>
-                <MainContainer displayedClassroom={this.state.displayedClassroom}></MainContainer>
+                <MainContainer></MainContainer>
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -57,6 +56,7 @@ const mapStateToProps = (state) => {
   return{
     isTeacher: state.isTeacher,
     classrooms: state.classrooms,
+    displayedClassroom: state.displayedClassroom
   }
 }
 
@@ -64,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     initialize: (personObj, forWhom) =>{
       return dispatch(initialize(personObj, forWhom))
+    },
+    changeDisplayedClassroom: (classObj) =>{
+      return dispatch(changeDisplayedClassroom(classObj))
     }
   }
 }

@@ -1,3 +1,5 @@
+import ClassAdapter from '../Adapters/ClassAdapter'
+
 export const initialize = (personObj, forWhom) => {
   let isTeacher = false
   if(forWhom === "teacher"){
@@ -8,6 +10,18 @@ export const initialize = (personObj, forWhom) => {
     payload:{
       isTeacher: isTeacher,
       classrooms: personObj.classrooms,
+      displayedClassroom: personObj.classrooms[0]
+    }
+  }
+}
+
+
+
+export const changeDisplayedClassroom = (classObj) => {
+  return {
+    type: 'CHANGEDISPLAY',
+    payload:{
+      displayedClassroom: classObj,
     }
   }
 }

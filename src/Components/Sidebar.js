@@ -6,7 +6,9 @@ const titleize = (string) => {
 }
 
 class Sidebar extends Component{
-  state = { activeIndex: -1 }
+  state = {
+    activeIndex: -1,
+  }
 
     handleAccordian = (event, titleProps) => {
       const { index } = titleProps
