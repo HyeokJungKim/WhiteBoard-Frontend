@@ -9,6 +9,17 @@ export const initializeTeacher = (classroomJson) => {
   }
 }
 
+export const initializeStudent = (classroomJson) => {
+  return{
+    type: 'INITIALIZESTUDENT',
+    payload:{
+      isTeacher: false,
+      classrooms: classroomJson.classrooms,
+      displayedClassroom: classroomJson.classrooms[0],
+    }
+  }
+}
+
 export const changeDisplayedClassroom = (classObj) => {
   return{
     type: 'CHANGEDISPLAY',

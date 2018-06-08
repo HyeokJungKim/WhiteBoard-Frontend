@@ -25,6 +25,27 @@ class TeacherAdapter{
     .then(resp => resp.json())
   }
 
+  static checkTeacher(){
+    return fetch(`${API}/teachers/${localStorage.getItem('id')}`, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+        "Authorization": `${localStorage.getItem('token')}`
+      }
+    })
+    .then(resp => {
+      if(resp.ok){
+        return resp.json()
+      } else{
+        return Promise.reject({isTeacher: false})
+      }
+    })
+    .catch(error =>{
+      return error
+    })
+  }
+
   static getClasses(){
     return fetch(`${API}/teachers/${localStorage.getItem('id')}/classrooms`, {
       method: "GET",

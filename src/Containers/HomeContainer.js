@@ -15,6 +15,15 @@ class HomeContainer extends Component{
   }
 
   componentDidMount = () => {
+    TeacherAdapter.checkTeacher()
+      .then(json=>{
+        if(json.isTeacher){
+          TeacherAdapter.getClasses()
+          .then(classes => {
+            this.props.initializeTeacher(classes)
+          })
+        }
+      })
     // TeacherAdapter.getClasses()
     // .then(classes => {
     //   if(classes.errors){

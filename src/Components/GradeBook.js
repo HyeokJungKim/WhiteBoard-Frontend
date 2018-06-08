@@ -46,7 +46,7 @@ class GradeBook extends Component{
                   <Table.Row>
                     <Table.Cell>
                       <Button>
-                        <Icon centered name="plus"></Icon>
+                        <Icon name="plus"></Icon>
                       </Button>
                     </Table.Cell>
                   </Table.Row>
