@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Container, Table, Button, Icon} from 'semantic-ui-react'
+import AddStudentForm from './AddStudentForm'
 
 class GradeBook extends Component{
   state={
-    addStudent: false,
+    open: false,
+  }
+
+  validDisplay = () => {
+    const {displayedClassroom} = this.props
+    return displayedClassroom && displayedClassroom.assignments
   }
 
   renderAssignmentsForTeacher = () => {
     const {displayedClassroom} = this.props
-    if(displayedClassroom.assignments){
+    if(this.validDisplay()){
       return displayedClassroom.assignments.map(assignment => {
          return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
@@ -20,8 +26,7 @@ class GradeBook extends Component{
 
   renderStudentsForTeacher= () => {
     const {displayedClassroom} = this.props
-
-    if(displayedClassroom.students && displayedClassroom.assignments){
+    if(this.validDisplay() && displayedClassroom.students ){
       const assignmentIds = displayedClassroom.assignments.map(assignment => {
         return assignment.id
       })
@@ -46,36 +51,39 @@ class GradeBook extends Component{
   }
 
   renderAssignmentsForStudent = () => {
-    if(!this.props.isTeacher){
-      const {displayedClassroom} = this.props
-      if(displayedClassroom.assignments && displayedClassroom.assignments.length > 0){
-        const assignmentIds = displayedClassroom.assignments.map(assignment => {
-          return assignment.id
-        })
+    const {displayedClassroom} = this.props
+    if(!this.props.isTeacher && this.validDisplay() && displayedClassroom.assignments.length > 0){
+      const assignmentIds = displayedClassroom.assignments.map(assignment => {
+        return assignment.id
+      })
 
-        return displayedClassroom.assignments.map(assignment => {
-          let filteredGrades = assignment.grades.filter(grade => {
-            return grade.student_id == localStorage.getItem("id") && assignmentIds.includes(grade.assignment_id)
-          })
-          let studentGrades = filteredGrades.map(grade => {
-            return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
-          })
-          return(
-            <Table.Row key={assignment.id}>
-              <Table.Cell>{assignment.description}</Table.Cell>
-              {studentGrades}
-            </Table.Row>
-          )
+      return displayedClassroom.assignments.map(assignment => {
+        let filteredGrades = assignment.grades.filter(grade => {
+          return grade.student_id == localStorage.getItem("id") && assignmentIds.includes(grade.assignment_id)
         })
-
-      } else{
+        let studentGrades = filteredGrades.map(grade => {
+          return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
+        })
         return(
-          <Table.Row>
-            <Table.Cell>You don't have any assignments for this class!</Table.Cell>
+          <Table.Row key={assignment.id}>
+            <Table.Cell>{assignment.description}</Table.Cell>
+            {studentGrades}
           </Table.Row>
         )
-      }
+      })
+
+    } else{
+      return(
+        <Table.Row>
+          <Table.Cell>You don't have any assignments for this class!</Table.Cell>
+        </Table.Row>
+      )
     }
+  }
+
+
+  showForm = () => {
+    this.setState({open: true})
   }
 
   render(){
@@ -84,7 +92,7 @@ class GradeBook extends Component{
     let assignmentsForStudent = this.renderAssignmentsForStudent()
     return(
       <Container>
-        <h1>{this.props.displayedClassroom.name}</h1>
+
         <Table definition compact>
           <Table.Header>
             <Table.HeaderCell />
@@ -105,7 +113,7 @@ class GradeBook extends Component{
             {this.props.isTeacher ?
               <Table.Row>
                 <Table.Cell>
-                  <Button>
+                  <Button onClick ={this.showForm}>
                     <Icon name="plus"></Icon>
                   </Button>
                 </Table.Cell>
@@ -114,9 +122,8 @@ class GradeBook extends Component{
             null
             }
           </Table.Body>
-
-
         </Table>
+        <AddStudentForm open={this.state.open}></AddStudentForm>
 
       </Container>
     )

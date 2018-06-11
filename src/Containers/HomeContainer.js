@@ -31,14 +31,6 @@ class HomeContainer extends Component{
           })
         }
       })
-    // TeacherAdapter.getClasses()
-    // .then(classes => {
-    //   if(classes.errors){
-    //     // FIXME: RENDER ERROR
-    //   } else{
-    //     this.props.initializeTeacher(classes, localStorage.getItem("forWhom"))
-    //   }
-    // })
   }
 
   onClick = (id) => {

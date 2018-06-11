@@ -4,7 +4,7 @@ export const initializeTeacher = (classroomJson) => {
     payload:{
       isTeacher: true,
       classrooms: classroomJson.classrooms,
-      displayedClassroom: classroomJson.classrooms[0],
+      displayedClassroom: classroomJson.classrooms ? classroomJson.classrooms[0] : null,
     }
   }
 }
@@ -15,7 +15,7 @@ export const initializeStudent = (classroomJson) => {
     payload:{
       isTeacher: false,
       classrooms: classroomJson.classrooms,
-      displayedClassroom: classroomJson.classrooms[0],
+      displayedClassroom: classroomJson.classrooms[0] ? classroomJson.classrooms[0] : null,
     }
   }
 }

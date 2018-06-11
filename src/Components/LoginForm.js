@@ -17,6 +17,12 @@ class LoginForm extends Component{
     forWhom: "teacher",
   }
 
+  setLocalStorage = (json) => {
+    localStorage.setItem("token", json.token)
+    localStorage.setItem("id", json.id)
+    localStorage.setItem("name", json.name)
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -42,11 +48,12 @@ class LoginForm extends Component{
         if(json.error){
           this.setState({error:json.error})
         } else {
-          localStorage.setItem("token", json.token)
-          localStorage.setItem("id", json.id)
-          localStorage.setItem("name", json.name)
-          this.props.initializeTeacher(json)
-          this.props.history.push('/home')
+          this.setLocalStorage(json)
+          TeacherAdapter.getClasses()
+          .then(classes => {
+            this.props.initializeTeacher(classes)
+            this.props.history.push('/home')
+          })
         }
       })
     }else{
@@ -55,11 +62,12 @@ class LoginForm extends Component{
         if(json.error){
           this.setState({error:json.error})
         } else {
-          localStorage.setItem("token", json.token)
-          localStorage.setItem("id", json.id)
-          localStorage.setItem("name", json.name)
-          this.props.initializeStudent(json)
-          this.props.history.push('/home')
+          this.setLocalStorage(json)
+          StudentAdapter.getClasses()
+          .then(classes =>{
+            this.props.initializeStudent(classes)
+            this.props.history.push('/home')
+          })
         }
       })
     }
