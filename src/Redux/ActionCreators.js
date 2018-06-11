@@ -28,3 +28,12 @@ export const changeDisplayedClassroom = (classObj) => {
     }
   }
 }
+
+export const AddNewAssignment = (classroomJson) =>{
+  return{
+    type: 'ADDNEWASSIGNMENT',
+    payload:{
+      classrooms: classroomJson.classrooms,
+    }
+  }
+}

@@ -10,6 +10,8 @@ const reducer = (state = initialState, action) =>{
       return {...state, ...action.payload}
     case 'INITIALIZESTUDENT':
       return {...state, ...action.payload}
+    case 'ADDNEWASSIGNMENT':
+      return {...state, ...action.payload}
     case 'CHANGEDISPLAY':
       return {...state, ...action.payload}
     default:

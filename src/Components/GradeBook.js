@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Button, Icon} from 'semantic-ui-react'
-import AddStudentForm from './AddStudentForm'
+import {Container, Table} from 'semantic-ui-react'
+import AddNewAssignmentForm from './AddNewAssignmentForm'
 
 class GradeBook extends Component{
   state={
@@ -81,6 +81,12 @@ class GradeBook extends Component{
     }
   }
 
+  renderClassName = () => {
+    const {displayedClassroom} = this.props
+    if(this.validDisplay()){
+      return <h1>{displayedClassroom.name}</h1>
+    }
+  }
 
   showForm = () => {
     this.setState({open: true})
@@ -90,9 +96,11 @@ class GradeBook extends Component{
     let assignmentsForTeacher = this.renderAssignmentsForTeacher()
     let studentsForTeacher = this.renderStudentsForTeacher()
     let assignmentsForStudent = this.renderAssignmentsForStudent()
+    let className = this.renderClassName()
+
     return(
       <Container>
-
+        {className}
         <Table definition compact>
           <Table.Header>
             <Table.HeaderCell />
@@ -110,20 +118,14 @@ class GradeBook extends Component{
             :
               assignmentsForStudent
             }
-            {this.props.isTeacher ?
-              <Table.Row>
-                <Table.Cell>
-                  <Button onClick ={this.showForm}>
-                    <Icon name="plus"></Icon>
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
-            :
-            null
-            }
+
           </Table.Body>
         </Table>
-        <AddStudentForm open={this.state.open}></AddStudentForm>
+        {this.props.isTeacher ?
+            <AddNewAssignmentForm></AddNewAssignmentForm>
+        :
+          null
+        }
 
       </Container>
     )
