@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) =>{
   switch(action.type){
     case 'INITIALIZETEACHER':
       return {...state, ...action.payload}
+    case 'INITIALIZESTUDENT':
+      return {...state, ...action.payload}
     case 'CHANGEDISPLAY':
       return {...state, ...action.payload}
     default:

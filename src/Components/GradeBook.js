@@ -7,17 +7,21 @@ class GradeBook extends Component{
     addStudent: false
   }
 
-  render(){
+  renderAssignments = () => {
     const {displayedClassroom} = this.props
-    let assignments = []
     if(displayedClassroom.assignments){
-      assignments = displayedClassroom.assignments.map(assignment => {
+      return displayedClassroom.assignments.map(assignment => {
          return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
+    } else{
+      return []
     }
-    let students = []
+  }
+
+  renderStudentsForTeacherAccount = () => {
+    const {displayedClassroom} = this.props
     if(displayedClassroom.students){
-      students = displayedClassroom.students.map(student => {
+      return displayedClassroom.students.map(student => {
         let grades = student.grades.map(grade => {
           return <Table.Cell id={grade.id}>{grade.grade}</Table.Cell>
         })
@@ -28,7 +32,15 @@ class GradeBook extends Component{
           </Table.Row>
         )
       })
+    } else{
+      return []
     }
+  }
+
+  render(){
+    let assignments = this.renderAssignments()
+    let students = this.renderStudentsForTeacherAccount()
+
     return(
       <Container>
         <h1>{this.props.displayedClassroom.name}</h1>

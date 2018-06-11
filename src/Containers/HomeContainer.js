@@ -6,8 +6,10 @@ import Sidebar from '../Components/Sidebar'
 import MainContainer from './MainContainer'
 
 import TeacherAdapter from '../Adapters/TeacherAdapter'
+import StudentAdapter from '../Adapters/StudentAdapter'
+
 import {connect} from 'react-redux'
-import {initializeTeacher, changeDisplayedClassroom} from '../Redux/ActionCreators'
+import {initializeTeacher, changeDisplayedClassroom, initializeStudent} from '../Redux/ActionCreators'
 
 class HomeContainer extends Component{
   state={
@@ -21,6 +23,11 @@ class HomeContainer extends Component{
           TeacherAdapter.getClasses()
           .then(classes => {
             this.props.initializeTeacher(classes)
+          })
+        } else{
+          StudentAdapter.getClasses()
+          .then(classes =>{
+            this.props.initializeStudent(classes)
           })
         }
       })
@@ -71,8 +78,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initializeTeacher: (personObj, forWhom) =>{
-      return dispatch(initializeTeacher(personObj, forWhom))
+    initializeTeacher: (personObj) =>{
+      return dispatch(initializeTeacher(personObj))
+    },
+    initializeStudent: (personObj) =>{
+      return dispatch(initializeStudent(personObj))
     },
     changeDisplayedClassroom: (classObj) =>{
       return dispatch(changeDisplayedClassroom(classObj))

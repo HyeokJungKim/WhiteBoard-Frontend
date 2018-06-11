@@ -38,7 +38,7 @@ class TeacherAdapter{
       if(resp.ok){
         return resp.json()
       } else{
-        return Promise.reject({isTeacher: false})
+        throw new Error("isTeacher": false)
       }
     })
     .catch(error =>{
