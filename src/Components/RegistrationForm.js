@@ -4,7 +4,7 @@ import {Form, Button, Divider, Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import StudentAdapter from '../Adapters/StudentAdapter'
 
-import {initializeTeacher} from '../Redux/ActionCreators'
+import {initializeTeacher, initializeStudent} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 class RegistrationForm extends Component{
@@ -49,7 +49,6 @@ class RegistrationForm extends Component{
             localStorage.setItem("token", json.token)
             localStorage.setItem("id", json.id)
             localStorage.setItem("name", json.name)
-            localStorage.setItem("forWhom", this.state.forWhom)
             this.props.initializeTeacher(json)
             this.props.history.push('/home')
           }
@@ -63,9 +62,8 @@ class RegistrationForm extends Component{
             localStorage.setItem("token", json.token)
             localStorage.setItem("id", json.id)
             localStorage.setItem("name", json.name)
-            localStorage.setItem("forWhom", this.state.forWhom)
+            this.props.initializeStudent(json)
             this.props.history.push('/home')
-            // this.props.initializeTeacher(json)
           }
         })
       }
@@ -102,9 +100,13 @@ class RegistrationForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initializeTeacher: (personObj, forWhom) =>{
-      return dispatch(initializeTeacher(personObj, forWhom))
-    }
+    initializeTeacher: (personObj) =>{
+      return dispatch(initializeTeacher(personObj))
+    },
+    initializeStudent: (personObj) =>{
+      return dispatch(initializeStudent(personObj))
+    },
+
   }
 }
 

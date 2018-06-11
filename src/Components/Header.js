@@ -11,8 +11,8 @@ class Header extends Component{
   }
 
   logout = () => {
-    localStorage.clear()
     this.props.history.push('/')
+    localStorage.clear()
   }
 
   render(){

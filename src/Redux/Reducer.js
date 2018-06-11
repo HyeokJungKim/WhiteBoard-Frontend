@@ -1,7 +1,7 @@
 const initialState = {
   isTeacher: null,
   classrooms:[],
-  displayedClassroom:{},
+  displayedClassroom: {},
 }
 
 const reducer = (state = initialState, action) =>{

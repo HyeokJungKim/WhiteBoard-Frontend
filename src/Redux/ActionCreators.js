@@ -10,7 +10,6 @@ export const initializeTeacher = (classroomJson) => {
 }
 
 export const initializeStudent = (classroomJson) => {
-  console.log(classroomJson.classrooms[0])
   return{
     type: 'INITIALIZESTUDENT',
     payload:{
