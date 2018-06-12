@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 class AddNewAssignmentForm extends Component{
   state={
     description: "",
-    open:false,
+    error: "",
   }
 
   handleChange = (event) => {
@@ -23,22 +23,23 @@ class AddNewAssignmentForm extends Component{
     const classData = {description: this.state.description}
     ClassAdapter.createAssignment(this.props.displayedClassroom.id, classData)
     .then(resp =>{
-      this.setState({open:false})
-      this.props.AddNewAssignment(resp)
+      if(resp.error){
+        this.setState({error: resp.error})
+      } else {
+        this.props.AddNewAssignment(resp)
+      }
     })
   }
 
-  showForm = () => {
-    this.setState({open: true})
-  }
-
   render(){
+    const error = <h6>{this.state.error}</h6>
     return(
-      <Modal size={"large"} open={this.state.open} trigger={<Button size="small" floated="right" onClick={this.showForm}>Add New Assignment</Button>} closeIcon>
+      <Modal size={"large"} trigger={<Button size="small" floated="right">Add New Assignment</Button>} closeIcon>
         <Header icon="pencil" content="Add New Assignment"></Header>
+        {error}
         <Modal.Content>
           <Form>
-            <Form.TextArea value={this.state.description} onChange={this.handleChange} label="Description" name="description" placeholder="Write a description for this homework assignment..."/>
+            <Form.TextArea value={this.state.description} onChange={this.handleChange} label="New Assignment" name="description" placeholder="Write a description for this homework assignment..."/>
             <Form.Button onClick={this.handleClick}>Submit</Form.Button>
           </Form>
         </Modal.Content>

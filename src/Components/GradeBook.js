@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table} from 'semantic-ui-react'
+import {Container, Table, Divider} from 'semantic-ui-react'
 import AddNewAssignmentForm from './AddNewAssignmentForm'
-
+import AddNewStudentForm from './AddNewStudentForm'
 class GradeBook extends Component{
-  state={
-    open: false,
-  }
 
   validDisplay = () => {
     const {displayedClassroom} = this.props
@@ -72,7 +69,7 @@ class GradeBook extends Component{
         )
       })
 
-    } else{
+    } else if(!this.props.isTeacher){
       return(
         <Table.Row>
           <Table.Cell>You don't have any assignments for this class!</Table.Cell>
@@ -88,10 +85,6 @@ class GradeBook extends Component{
     }
   }
 
-  showForm = () => {
-    this.setState({open: true})
-  }
-
   render(){
     let assignmentsForTeacher = this.renderAssignmentsForTeacher()
     let studentsForTeacher = this.renderStudentsForTeacher()
@@ -101,7 +94,7 @@ class GradeBook extends Component{
     return(
       <Container>
         {className}
-        <Table definition compact>
+        <Table fixed definition compact>
           <Table.Header>
             <Table.HeaderCell />
             {this.props.isTeacher ?
@@ -122,7 +115,11 @@ class GradeBook extends Component{
           </Table.Body>
         </Table>
         {this.props.isTeacher ?
+          <div>
             <AddNewAssignmentForm></AddNewAssignmentForm>
+            <Divider clearing hidden/>
+            <AddNewStudentForm></AddNewStudentForm>
+          </div>
         :
           null
         }

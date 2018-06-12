@@ -20,7 +20,7 @@ class Header extends Component{
       <Menu>
         <Menu.Menu position='right'>
           <Menu.Item>
-            {localStorage.getItem('name') ?
+            {localStorage.getItem('token') ?
               <p>Logged in as: {`${localStorage.getItem('name')}`}</p>
               :
               <Button primary onClick={this.registration}> Register </Button>
@@ -29,7 +29,7 @@ class Header extends Component{
 
           </Menu.Item>
           <Menu.Item>
-            {localStorage.getItem('name') ?
+            {localStorage.getItem('token') ?
               <Button primary onClick={this.logout}> Logout </Button>
               :
               <Button primary onClick={this.login}> Login </Button>
