@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) =>{
         }
       })
       classrooms[index] = action.payload
-      return {...state, classrooms:[...classrooms]}
+      return {...state, classrooms:[...classrooms], displayedClassroom: action.payload}
 
     case 'ADDNEWSTUDENT':
       index = classrooms.forEach((classroom, index) => {
@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) =>{
         }
       })
       classrooms[index] = action.payload
-      return {...state, classrooms:[...classrooms]}
+      return {...state, classrooms:[...classrooms], displayedClassroom: action.payload}
 
     case 'CHANGEDISPLAY':
       return {...state, ...action.payload}

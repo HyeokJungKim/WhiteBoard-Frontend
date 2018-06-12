@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import {Container} from 'semantic-ui-react'
 
 import TeacherGradeBook from '../TeacherComponents/TeacherGradeBook.js'
+import TeacherInformationForStudent from '../TeacherComponents/TeacherInformationForStudent.js'
 
 class TeacherMainContainer extends Component{
+
+  validDisplay = () => {
+    const {displayedClassroom} = this.props
+    return displayedClassroom && displayedClassroom.assignments && displayedClassroom.students
+  }
 
   whatToDisplay = () => {
     switch(this.props.display){
       case "GradeBook":
-        return <TeacherGradeBook/>
+        return <TeacherGradeBook validDisplay={this.validDisplay}/>
       case "Information":
-        return <p>{this.props.display}</p>
+        return <TeacherInformationForStudent validDisplay={this.validDisplay}/>
       default:
-        return <TeacherGradeBook/>
+        return <TeacherGradeBook validDisplay={this.validDisplay}/>
     }
   }
 
@@ -26,4 +33,12 @@ class TeacherMainContainer extends Component{
   }
 }
 
-export default TeacherMainContainer
+
+
+const mapStateToProps = (state) => {
+  return {
+    displayedClassroom: state.displayedClassroom,
+  }
+}
+
+export default connect(mapStateToProps)(TeacherMainContainer)

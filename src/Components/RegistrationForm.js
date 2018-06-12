@@ -52,10 +52,10 @@ class RegistrationForm extends Component{
           if(json.error){
             this.setState({error:json.error})
           } else {
-
             this.setLocalStorage(json)
             TeacherAdapter.getClasses()
             .then(classes => {
+              console.log(classes);
               this.props.initializeTeacher(classes)
               this.props.history.push('/home')
             })

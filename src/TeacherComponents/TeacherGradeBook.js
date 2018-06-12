@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Divider} from 'semantic-ui-react'
+import {Container, Table, Grid} from 'semantic-ui-react'
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
 
 class TeacherGradeBook extends Component{
 
-  validDisplay = () => {
+  renderAssignments = () => {
     const {displayedClassroom} = this.props
-    return displayedClassroom && displayedClassroom.assignments && displayedClassroom.students
-  }
-
-  renderAssignmentsForTeacher = () => {
-    const {displayedClassroom} = this.props
-    if(this.validDisplay() && displayedClassroom.assignments.length > 0){
+    if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
          return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
@@ -23,9 +18,9 @@ class TeacherGradeBook extends Component{
     }
   }
 
-  renderStudentsForTeacher= () => {
+  renderStudents= () => {
     const {displayedClassroom} = this.props
-    if(this.validDisplay() && displayedClassroom.students.length > 0 ){
+    if(this.props.validDisplay() && displayedClassroom.students.length > 0 ){
       const assignmentIds = displayedClassroom.assignments.map(assignment => {
         return assignment.id
       })
@@ -55,36 +50,41 @@ class TeacherGradeBook extends Component{
 
   renderClassName = () => {
     const {displayedClassroom} = this.props
-    if(this.validDisplay()){
+    if(this.props.validDisplay()){
       return <h1>{displayedClassroom.name}</h1>
     }
   }
 
   render(){
-    let assignmentsForTeacher = this.renderAssignmentsForTeacher()
-    let studentsForTeacher = this.renderStudentsForTeacher()
-    let className = this.renderClassName()
+    const assignments = this.renderAssignments()
+    const students = this.renderStudents()
+    const className = this.renderClassName()
 
     return(
       <Container>
         {className}
-        Teacher Gradebook
+        <Grid columns={3}>
+          <Grid.Row>
+            <Grid.Column>
+              <AddNewAssignmentForm/>
+            </Grid.Column>
+            <Grid.Column>
+              <AddExistingStudentForm/>
+            </Grid.Column>
+            <Grid.Column>
+              <AddNewStudentForm/>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <Table fixed definition compact>
           <Table.Header>
             <Table.HeaderCell />
-              {assignmentsForTeacher}
+              {assignments}
           </Table.Header>
           <Table.Body>
-            {studentsForTeacher}
+            {students}
           </Table.Body>
         </Table>
-        <div>
-          <AddNewAssignmentForm/>
-          <Divider clearing hidden/>
-          <AddExistingStudentForm/>
-          <Divider clearing hidden/>
-          <AddNewStudentForm/>
-        </div>
       </Container>
     )
   }

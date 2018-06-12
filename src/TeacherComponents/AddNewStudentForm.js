@@ -6,7 +6,6 @@ import StudentAdapter from '../Adapters/StudentAdapter'
 import {AddNewStudent, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
-
 class AddNewStudentForm extends Component{
   state={
     firstName: "",
@@ -36,7 +35,6 @@ class AddNewStudentForm extends Component{
         this.props.changeDisplayedClassroom(resp)
       }
     })
-
   }
 
   render(){

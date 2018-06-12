@@ -36,7 +36,7 @@ class TeacherSidebar extends Component{
 
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Classes
+            Grades
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <List>
