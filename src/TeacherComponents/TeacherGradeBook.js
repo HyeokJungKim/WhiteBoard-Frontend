@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Container, Table, Grid} from 'semantic-ui-react'
+
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
+import EditGradeForm from './EditGradeForm'
 
 class TeacherGradeBook extends Component{
+  state={
+    editGrade: false,
+    gradeID: ""
+  }
 
   renderAssignments = () => {
     const {displayedClassroom} = this.props
@@ -14,7 +20,7 @@ class TeacherGradeBook extends Component{
          return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
-      return [<Table.HeaderCell> You don't have any assignments!</Table.HeaderCell>]
+      return <Table.HeaderCell> You don't have any assignments!</Table.HeaderCell>
     }
   }
 
@@ -40,12 +46,16 @@ class TeacherGradeBook extends Component{
         )
       })
     } else {
-      return [<Table.Row><Table.Cell>You don't have any students!</Table.Cell></Table.Row>]
+      return <Table.Row><Table.Cell>You don't have any students!</Table.Cell></Table.Row>
     }
   }
 
   changeGrade = (event) => {
-    console.log(event.target.id);
+    this.setState({editGrade: true, gradeID: event.target.id})
+  }
+
+  closeEdit = () => {
+    this.setState({editGrade: false, gradeID: ""})
   }
 
   renderClassName = () => {
@@ -85,6 +95,11 @@ class TeacherGradeBook extends Component{
             {students}
           </Table.Body>
         </Table>
+        {this.state.editGrade ?
+          <EditGradeForm gradeID={this.state.gradeID} editGrade={this.state.editGrade} closeEdit={this.closeEdit}/>
+          :
+          null
+        }
       </Container>
     )
   }
