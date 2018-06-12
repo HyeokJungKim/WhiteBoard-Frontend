@@ -4,7 +4,8 @@ import {Container, Table, Divider} from 'semantic-ui-react'
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
-class GradeBook extends Component{
+
+class TeacherGradebook extends Component{
 
   validDisplay = () => {
     const {displayedClassroom} = this.props
@@ -48,37 +49,6 @@ class GradeBook extends Component{
     }
   }
 
-  renderAssignmentsForStudent = () => {
-    const {displayedClassroom} = this.props
-    if(!this.props.isTeacher && this.validDisplay() && displayedClassroom.assignments.length > 0){
-      const assignmentIds = displayedClassroom.assignments.map(assignment => {
-        return assignment.id
-      })
-
-      return displayedClassroom.assignments.map(assignment => {
-        let filteredGrades = assignment.grades.filter(grade => {
-          return grade.student_id === localStorage.getItem("id") && assignmentIds.includes(grade.assignment_id)
-        })
-        let studentGrades = filteredGrades.map(grade => {
-          return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
-        })
-        return(
-          <Table.Row key={assignment.id}>
-            <Table.Cell>{assignment.description}</Table.Cell>
-            {studentGrades}
-          </Table.Row>
-        )
-      })
-
-    } else if(!this.props.isTeacher){
-      return(
-        <Table.Row>
-          <Table.Cell>You don't have any assignments for this class!</Table.Cell>
-        </Table.Row>
-      )
-    }
-  }
-
   renderClassName = () => {
     const {displayedClassroom} = this.props
     if(this.validDisplay()){
@@ -89,44 +59,28 @@ class GradeBook extends Component{
   render(){
     let assignmentsForTeacher = this.renderAssignmentsForTeacher()
     let studentsForTeacher = this.renderStudentsForTeacher()
-    let assignmentsForStudent = this.renderAssignmentsForStudent()
     let className = this.renderClassName()
 
     return(
       <Container>
         {className}
+        Teacher Gradebook
         <Table fixed definition compact>
           <Table.Header>
             <Table.HeaderCell />
-            {this.props.isTeacher ?
-              assignmentsForTeacher
-              :
-              <Table.HeaderCell>Grades</Table.HeaderCell>
-            }
+              {assignmentsForTeacher}
           </Table.Header>
-
-
           <Table.Body>
-            {this.props.isTeacher ?
-              studentsForTeacher
-            :
-              assignmentsForStudent
-            }
-
+            {studentsForTeacher}
           </Table.Body>
         </Table>
-        {this.props.isTeacher ?
-          <div>
-            <AddNewAssignmentForm/>
-            <Divider clearing hidden/>
-            <AddExistingStudentForm/>
-            <Divider clearing hidden/>
-            <AddNewStudentForm/>
-          </div>
-        :
-          null
-        }
-
+        <div>
+          <AddNewAssignmentForm/>
+          <Divider clearing hidden/>
+          <AddExistingStudentForm/>
+          <Divider clearing hidden/>
+          <AddNewStudentForm/>
+        </div>
       </Container>
     )
   }
@@ -141,4 +95,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(GradeBook)
+export default connect(mapStateToProps)(TeacherGradebook)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Accordion, Icon, List } from 'semantic-ui-react'
 
-class Sidebar extends Component{
+class StudentSidebar extends Component{
   state = {
     activeIndex: -1,
   }
@@ -40,7 +40,7 @@ class Sidebar extends Component{
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Grades
+            Student Sidebar
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
             {/* FILL */}
@@ -59,4 +59,4 @@ class Sidebar extends Component{
   }
 }
 
-export default Sidebar
+export default StudentSidebar

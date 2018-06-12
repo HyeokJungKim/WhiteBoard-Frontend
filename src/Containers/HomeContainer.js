@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {Container,Grid} from 'semantic-ui-react'
 
 import Header from '../Components/Header'
-import Sidebar from '../Components/Sidebar'
+import TeacherSidebar from '../Components/TeacherSidebar'
+import StudentSidebar from '../Components/StudentSidebar'
 import MainContainer from './MainContainer'
 
 import TeacherAdapter from '../Adapters/TeacherAdapter'
@@ -46,11 +47,15 @@ class HomeContainer extends Component{
           <Grid>
             <Grid.Row>
               <Grid.Column width={4}>
-                <Sidebar onClick={this.onClick} {...this.props}></Sidebar>
+                {this.props.isTeacher ?
+                  <TeacherSidebar onClick={this.onClick} {...this.props}/>
+                  :
+                  <StudentSidebar onClick={this.onClick} {...this.props}/>
+                }
               </Grid.Column>
 
               <Grid.Column width={12}>
-                <MainContainer></MainContainer>
+                <MainContainer{...this.props}></MainContainer>
               </Grid.Column>
             </Grid.Row>
           </Grid>
