@@ -51,6 +51,7 @@ class LoginForm extends Component{
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
           .then(classes => {
+            console.log(classes);
             this.props.initializeTeacher(classes)
             this.props.history.push('/home')
           })
@@ -65,6 +66,7 @@ class LoginForm extends Component{
           this.setLocalStorage(json)
           StudentAdapter.getClasses()
           .then(classes =>{
+            console.log(classes);
             this.props.initializeStudent(classes)
             this.props.history.push('/home')
           })
@@ -97,11 +99,11 @@ class LoginForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initializeTeacher: (personObj) =>{
-      return dispatch(initializeTeacher(personObj))
+    initializeTeacher: (classroomsJSON) =>{
+      return dispatch(initializeTeacher(classroomsJSON))
     },
-    initializeStudent: (personObj) =>{
-      return dispatch(initializeStudent(personObj))
+    initializeStudent: (classroomsJSON) =>{
+      return dispatch(initializeStudent(classroomsJSON))
     },
   }
 }

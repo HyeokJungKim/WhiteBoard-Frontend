@@ -52,6 +52,7 @@ class RegistrationForm extends Component{
           if(json.error){
             this.setState({error:json.error})
           } else {
+
             this.setLocalStorage(json)
             TeacherAdapter.getClasses()
             .then(classes => {
@@ -108,11 +109,11 @@ class RegistrationForm extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initializeTeacher: (personObj) =>{
-      return dispatch(initializeTeacher(personObj))
+    initializeTeacher: (classroomsJSON) =>{
+      return dispatch(initializeTeacher(classroomsJSON))
     },
-    initializeStudent: (personObj) =>{
-      return dispatch(initializeStudent(personObj))
+    initializeStudent: (classroomsJSON) =>{
+      return dispatch(initializeStudent(classroomsJSON))
     },
 
   }

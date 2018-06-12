@@ -1,39 +1,46 @@
-export const initializeTeacher = (classroomJson) => {
+export const initializeTeacher = (classroomsJSON) => {
   return{
     type: 'INITIALIZETEACHER',
     payload:{
       isTeacher: true,
-      classrooms: classroomJson.classrooms,
-      displayedClassroom: classroomJson.classrooms ? classroomJson.classrooms[0] : null,
+      classrooms: classroomsJSON.classrooms,
+      displayedClassroom: classroomsJSON.classrooms ? classroomsJSON.classrooms[0] : null,
     }
   }
 }
 
-export const initializeStudent = (classroomJson) => {
+export const initializeStudent = (classroomsJSON) => {
   return{
     type: 'INITIALIZESTUDENT',
     payload:{
       isTeacher: false,
-      classrooms: classroomJson.classrooms,
-      displayedClassroom: classroomJson.classrooms[0] ? classroomJson.classrooms[0] : null,
+      classrooms: classroomsJSON.classrooms,
+      displayedClassroom: classroomsJSON.classrooms[0] ? classroomsJSON.classrooms[0] : null,
     }
   }
 }
 
-export const changeDisplayedClassroom = (classObj) => {
+export const changeDisplayedClassroom = (classroomObject) => {
   return{
     type: 'CHANGEDISPLAY',
     payload:{
-      displayedClassroom: classObj,
+      displayedClassroom: classroomObject,
     }
   }
 }
 
-export const AddNewAssignment = (classroomJson) =>{
+export const AddNewAssignment = (classroomObject) =>{
   return{
     type: 'ADDNEWASSIGNMENT',
     payload:{
-      classrooms: classroomJson.classrooms,
+      classrooms: {...classroomObject}
     }
+  }
+}
+
+export const AddNewStudent = (classroomObject) => {
+  return {
+    type: 'ADDNEWSTUDENT',
+    payload: {...classroomObject}
   }
 }

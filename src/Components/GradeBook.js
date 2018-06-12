@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Container, Table, Divider} from 'semantic-ui-react'
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
+import AddExistingStudentForm from './AddExistingStudentForm'
 class GradeBook extends Component{
 
   validDisplay = () => {
@@ -37,7 +38,7 @@ class GradeBook extends Component{
         })
         return (
           <Table.Row key={student.id}>
-            <Table.Cell>{student.firstName}</Table.Cell>
+            <Table.Cell>{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {filteredGrades}
           </Table.Row>
         )
@@ -56,7 +57,7 @@ class GradeBook extends Component{
 
       return displayedClassroom.assignments.map(assignment => {
         let filteredGrades = assignment.grades.filter(grade => {
-          return grade.student_id == localStorage.getItem("id") && assignmentIds.includes(grade.assignment_id)
+          return grade.student_id === localStorage.getItem("id") && assignmentIds.includes(grade.assignment_id)
         })
         let studentGrades = filteredGrades.map(grade => {
           return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
@@ -116,9 +117,11 @@ class GradeBook extends Component{
         </Table>
         {this.props.isTeacher ?
           <div>
-            <AddNewAssignmentForm></AddNewAssignmentForm>
+            <AddNewAssignmentForm/>
             <Divider clearing hidden/>
-            <AddNewStudentForm></AddNewStudentForm>
+            <AddExistingStudentForm/>
+            <Divider clearing hidden/>
+            <AddNewStudentForm/>
           </div>
         :
           null

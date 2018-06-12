@@ -3,7 +3,7 @@ import {Modal, Button, Header, Form} from 'semantic-ui-react'
 
 import ClassAdapter from '../Adapters/ClassAdapter'
 
-import {AddNewAssignment} from '../Redux/ActionCreators'
+import {AddNewAssignment, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 
@@ -27,12 +27,13 @@ class AddNewAssignmentForm extends Component{
         this.setState({error: resp.error})
       } else {
         this.props.AddNewAssignment(resp)
+        this.props.changeDisplayedClassroom(resp)
       }
     })
   }
 
   render(){
-    const error = <h6>{this.state.error}</h6>
+    const error = <h4>{this.state.error}</h4>
     return(
       <Modal size={"large"} trigger={<Button size="small" floated="right">Add New Assignment</Button>} closeIcon>
         <Header icon="pencil" content="Add New Assignment"></Header>
@@ -57,9 +58,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddNewAssignment: (classroomJson) =>{
-      return dispatch(AddNewAssignment(classroomJson))
+    AddNewAssignment: (classroomObject) =>{
+      return dispatch(AddNewAssignment(classroomObject))
     },
+    changeDisplayedClassroom: (classroomObject) =>{
+      return dispatch(changeDisplayedClassroom(classroomObject))
+    }
   }
 }
 

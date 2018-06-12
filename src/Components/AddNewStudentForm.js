@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
 import {Modal, Button, Header, Form} from 'semantic-ui-react'
 
-import ClassAdapter from '../Adapters/ClassAdapter'
+import StudentAdapter from '../Adapters/StudentAdapter'
 
-import {AddNewAssignment} from '../Redux/ActionCreators'
+import {AddNewStudent, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 
 class AddNewStudentForm extends Component{
   state={
-    description: "",
-    error: "",
+    firstName: "",
+    lastName: "",
+    errors: [],
+  }
+
+  titleize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
 
   handleChange = (event) => {
@@ -19,23 +24,34 @@ class AddNewStudentForm extends Component{
     })
   }
 
-  // handleClick = (event) => {
-  //   const classData = {description: this.state.description}
-  //   ClassAdapter.createAssignment(this.props.displayedClassroom.id, classData)
-  //   .then(resp =>{
-  //     if(resp.error){
-  //       this.setState({error: resp.error})
-  //     } else {
-  //       this.props.AddNewAssignment(resp)
-  //     }
-  //   })
-  // }
+  handleClick = (event) => {
+    const {lastName, firstName} = this.state
+    const studentData = {firstName: this.titleize(firstName.trim()), lastName: this.titleize(lastName.trim()), class_id: this.props.displayedClassroom.id}
+    StudentAdapter.register(studentData)
+    .then(resp =>{
+      if(resp.errors){
+        this.setState({errors: resp.errors})
+      } else {
+        this.props.AddNewStudent(resp)
+        this.props.changeDisplayedClassroom(resp)
+      }
+    })
+
+  }
 
   render(){
-
     return(
       <Modal size={"large"} trigger={<Button size="small" floated="right">Add New Student</Button>} closeIcon>
-        <Header icon="pencil" content="Add New Student"></Header>
+        <Header icon="book" content="Add New Student"></Header>
+        <Modal.Content>
+        <Form>
+          <Form.Group widths='equal'>
+            <Form.Input name="firstName" value={this.state.firstName} onChange={this.handleChange} label="First Name" placeholder="First Name"/>
+            <Form.Input name="lastName" value={this.state.lastName} onChange={this.handleChange} label="Last Name" placeholder="Last Name"/>
+          </Form.Group>
+          <Form.Button onClick={this.handleClick}>Submit</Form.Button>
+        </Form>
+        </Modal.Content>
       </Modal>
     )
   }
@@ -50,9 +66,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddNewAssignment: (classroomJson) =>{
-      return dispatch(AddNewAssignment(classroomJson))
+    AddNewStudent: (classroomObject) =>{
+      return dispatch(AddNewStudent(classroomObject))
     },
+    changeDisplayedClassroom: (classroomObject) =>{
+      return dispatch(changeDisplayedClassroom(classroomObject))
+    }
   }
 }
 

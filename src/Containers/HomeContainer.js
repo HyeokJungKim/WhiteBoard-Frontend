@@ -70,11 +70,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initializeTeacher: (personObj) =>{
-      return dispatch(initializeTeacher(personObj))
+    initializeTeacher: (classroomJSON) =>{
+      return dispatch(initializeTeacher(classroomJSON))
     },
-    initializeStudent: (personObj) =>{
-      return dispatch(initializeStudent(personObj))
+    initializeStudent: (classroomJSON) =>{
+      return dispatch(initializeStudent(classroomJSON))
     },
     changeDisplayedClassroom: (classObj) =>{
       return dispatch(changeDisplayedClassroom(classObj))
