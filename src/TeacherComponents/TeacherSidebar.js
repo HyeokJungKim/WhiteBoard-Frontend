@@ -17,13 +17,19 @@ class TeacherSidebar extends Component{
     this.setState({ activeIndex: newIndex })
   }
 
-  onClick = (event) =>{
-    this.props.onClick(event.target.id)
+  changeClassDisplay = (event) =>{
+    this.props.changeClassDisplay(event.target.id)
+  }
+
+  changeStudentInfoDisplay = (event) =>{
+    this.props.changeStudentInfoDisplay(event.target.id)
   }
 
   render(){
     const { activeIndex } = this.state
-    const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.onClick} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+    const classNamesForGrades = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+
+    const classNamesForStudents = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeStudentInfoDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
     return (
       <div>
         <Accordion attached="bottom" fluid styled>
@@ -34,16 +40,16 @@ class TeacherSidebar extends Component{
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <List>
-              {classNames}
+              {classNamesForGrades}
             </List>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Teacher Sidebar
+            Student Information
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
-            {/* FILL */}
+            {classNamesForStudents}
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>

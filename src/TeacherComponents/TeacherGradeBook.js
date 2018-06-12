@@ -5,27 +5,27 @@ import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
 
-class TeacherGradebook extends Component{
+class TeacherGradeBook extends Component{
 
   validDisplay = () => {
     const {displayedClassroom} = this.props
-    return displayedClassroom && displayedClassroom.assignments
+    return displayedClassroom && displayedClassroom.assignments && displayedClassroom.students
   }
 
   renderAssignmentsForTeacher = () => {
     const {displayedClassroom} = this.props
-    if(this.validDisplay()){
+    if(this.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
          return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
-      return []
+      return [<Table.HeaderCell> You don't have any assignments!</Table.HeaderCell>]
     }
   }
 
   renderStudentsForTeacher= () => {
     const {displayedClassroom} = this.props
-    if(this.validDisplay() && displayedClassroom.students ){
+    if(this.validDisplay() && displayedClassroom.students.length > 0 ){
       const assignmentIds = displayedClassroom.assignments.map(assignment => {
         return assignment.id
       })
@@ -35,7 +35,7 @@ class TeacherGradebook extends Component{
           return assignmentIds.includes(grade.assignment_id)
         })
         let filteredGrades = grades.map(grade => {
-          return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
+          return <Table.Cell key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
         })
         return (
           <Table.Row key={student.id}>
@@ -45,8 +45,12 @@ class TeacherGradebook extends Component{
         )
       })
     } else {
-      return []
+      return [<Table.Row><Table.Cell>You don't have any students!</Table.Cell></Table.Row>]
     }
+  }
+
+  changeGrade = (event) => {
+    console.log(event.target.id);
   }
 
   renderClassName = () => {
@@ -89,10 +93,9 @@ class TeacherGradebook extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    isTeacher: state.isTeacher,
     displayedClassroom: state.displayedClassroom,
   }
 }
 
 
-export default connect(mapStateToProps)(TeacherGradebook)
+export default connect(mapStateToProps)(TeacherGradeBook)

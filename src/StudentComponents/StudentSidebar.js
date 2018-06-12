@@ -17,13 +17,13 @@ class StudentSidebar extends Component{
     this.setState({ activeIndex: newIndex })
   }
 
-  onClick = (event) =>{
-    this.props.onClick(event.target.id)
+  changeClassDisplay = (event) =>{
+    this.props.changeClassDisplay(event.target.id)
   }
 
   render(){
     const { activeIndex } = this.state
-    const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.onClick} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+    const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
     return (
       <div>
         <Accordion attached="bottom" fluid styled>

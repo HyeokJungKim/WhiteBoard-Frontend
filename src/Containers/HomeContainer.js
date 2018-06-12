@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import {Container,Grid} from 'semantic-ui-react'
 
 import Header from '../Components/Header'
-import TeacherSidebar from '../Components/TeacherSidebar'
-import StudentSidebar from '../Components/StudentSidebar'
-import MainContainer from './MainContainer'
+
+import StudentSidebar from '../StudentComponents/StudentSidebar.js'
+import StudentMainContainer from './StudentMainContainer'
+
+import TeacherSidebar from '../TeacherComponents/TeacherSidebar'
+import TeacherMainContainer from './TeacherMainContainer'
 
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import StudentAdapter from '../Adapters/StudentAdapter'
@@ -34,7 +37,14 @@ class HomeContainer extends Component{
       })
   }
 
-  onClick = (id) => {
+  changeClassDisplay = (id) => {
+    this.setState({display:"GradeBook"})
+    let classToDisplay = this.props.classrooms.find(classroom => classroom.id == id)
+    this.props.changeDisplayedClassroom(classToDisplay)
+  }
+
+  changeStudentInfoDisplay = (id) => {
+    this.setState({display:"Information"})
     let classToDisplay = this.props.classrooms.find(classroom => classroom.id == id)
     this.props.changeDisplayedClassroom(classToDisplay)
   }
@@ -48,14 +58,18 @@ class HomeContainer extends Component{
             <Grid.Row>
               <Grid.Column width={4}>
                 {this.props.isTeacher ?
-                  <TeacherSidebar onClick={this.onClick} {...this.props}/>
+                  <TeacherSidebar display={this.state.display} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                   :
-                  <StudentSidebar onClick={this.onClick} {...this.props}/>
+                  <StudentSidebar display={this.state.display} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                 }
               </Grid.Column>
 
               <Grid.Column width={12}>
-                <MainContainer{...this.props}></MainContainer>
+                {this.props.isTeacher ?
+                  <TeacherMainContainer display={this.state.display}/>
+                  :
+                  <StudentMainContainer/>
+                }
               </Grid.Column>
             </Grid.Row>
           </Grid>

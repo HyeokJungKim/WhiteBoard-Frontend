@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Divider} from 'semantic-ui-react'
+import {Container, Table} from 'semantic-ui-react'
 
 class StudentGradeBook extends Component{
 
@@ -8,43 +8,6 @@ class StudentGradeBook extends Component{
     const {displayedClassroom} = this.props
     return displayedClassroom && displayedClassroom.assignments
   }
-
-  // renderAssignmentsForTeacher = () => {
-  //   const {displayedClassroom} = this.props
-  //   if(this.validDisplay()){
-  //     return displayedClassroom.assignments.map(assignment => {
-  //        return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
-  //      })
-  //   } else{
-  //     return []
-  //   }
-  // }
-
-  // renderStudentsForTeacher= () => {
-  //   const {displayedClassroom} = this.props
-  //   if(this.validDisplay() && displayedClassroom.students ){
-  //     const assignmentIds = displayedClassroom.assignments.map(assignment => {
-  //       return assignment.id
-  //     })
-  //
-  //     return displayedClassroom.students.map(student => {
-  //       let grades = student.grades.filter(grade =>{
-  //         return assignmentIds.includes(grade.assignment_id)
-  //       })
-  //       let filteredGrades = grades.map(grade => {
-  //         return <Table.Cell key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
-  //       })
-  //       return (
-  //         <Table.Row key={student.id}>
-  //           <Table.Cell>{`${student.firstName} ${student.lastName}`}</Table.Cell>
-  //           {filteredGrades}
-  //         </Table.Row>
-  //       )
-  //     })
-  //   } else {
-  //     return []
-  //   }
-  // }
 
   renderAssignments = () => {
     const {displayedClassroom} = this.props
@@ -95,7 +58,7 @@ class StudentGradeBook extends Component{
         <Table fixed definition compact>
           <Table.Header>
             <Table.HeaderCell />
-              <Table.HeaderCell>Grades</Table.HeaderCell>
+            <Table.HeaderCell>Grades</Table.HeaderCell>
           </Table.Header>
           <Table.Body>
               {assignments}
