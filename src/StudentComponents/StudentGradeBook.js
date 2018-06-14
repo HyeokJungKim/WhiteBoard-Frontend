@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Container, Table} from 'semantic-ui-react'
+import OneClassInfo from './OneClassInfo'
 
 class StudentGradeBook extends Component{
 
@@ -50,7 +51,6 @@ class StudentGradeBook extends Component{
   render(){
     let assignments = this.renderAssignments()
     let className = this.renderClassName()
-
     return(
       <Container>
         {className}
@@ -64,6 +64,7 @@ class StudentGradeBook extends Component{
               {assignments}
           </Table.Body>
         </Table>
+        <OneClassInfo displayedClassroom={this.props.displayedClassroom} validDisplay={this.validDisplay}/>
       </Container>
     )
   }

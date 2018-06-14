@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 class EditGradeForm extends Component{
   state={
     grade: "",
-    error: "",
+    errors: "",
   }
 
   componentDidMount = () => {
@@ -30,9 +30,13 @@ class EditGradeForm extends Component{
     const gradeData = {grade: this.state.grade}
     GradeAdapter.editGrade(this.props.gradeID, gradeData)
     .then(resp=>{
-      this.props.closeEdit()
-      this.props.updateClassroom(resp)
-      this.props.changeDisplayedClassroom(resp)
+      if(resp.errors){
+        this.setState({error: resp.errors})
+      } else{ 
+        this.props.closeEdit()
+        this.props.updateClassroom(resp)
+        this.props.changeDisplayedClassroom(resp)
+      }
     })
   }
 

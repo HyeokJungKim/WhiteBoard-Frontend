@@ -37,6 +37,16 @@ class StudentAdapter{
     .then(resp => resp.json())
   }
 
+  static getGrades(id){
+    return fetch(`${API}/students/${id}`, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      }
+    })
+    .then(resp => resp.json())
+  }
 
 
 

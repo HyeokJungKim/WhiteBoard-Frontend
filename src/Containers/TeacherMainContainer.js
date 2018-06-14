@@ -33,8 +33,6 @@ class TeacherMainContainer extends Component{
   }
 }
 
-
-
 const mapStateToProps = (state) => {
   return {
     displayedClassroom: state.displayedClassroom,

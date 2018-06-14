@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Container, Table, Icon} from 'semantic-ui-react'
+import OneStudentInfo from './OneStudentInfo'
 
 class TeacherInformationForStudent extends Component{
+  state={
+    studentToDisplay: null
+  }
 
   renderClassName = () => {
     const {displayedClassroom} = this.props
@@ -30,8 +34,8 @@ class TeacherInformationForStudent extends Component{
           average = Math.round(average/counter * 100)/100
 
           return(
-          <Table.Row>
-            <Table.Cell>{`${student.firstName} ${student.lastName}`}</Table.Cell>
+          <Table.Row key={student.id}>
+            <Table.Cell id={student.id} onClick={this.onClick}>{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {student.isAccount ?
               <Table.Cell>{`${student.username}`}</Table.Cell>
             :
@@ -46,6 +50,10 @@ class TeacherInformationForStudent extends Component{
     }
   }
 
+  onClick = (event) => {
+    this.setState({studentToDisplay: event.target.id})
+  }
+
   render(){
     const className = this.renderClassName()
     const students = this.renderStudents()
@@ -58,9 +66,13 @@ class TeacherInformationForStudent extends Component{
             <Table.HeaderCell>Username</Table.HeaderCell>
             <Table.HeaderCell>Average</Table.HeaderCell>
           </Table.Row>
-
           {students}
         </Table>
+        {this.state.studentToDisplay ?
+          <OneStudentInfo studentToDisplay={this.state.studentToDisplay}/>
+        :
+          null
+        }
       </Container>
 
     )

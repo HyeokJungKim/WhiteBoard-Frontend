@@ -34,16 +34,16 @@ class StudentSidebar extends Component{
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <List>
-              {classNames}
+              FILL HERE
             </List>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Student Sidebar
+            Grades
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
-            {/* FILL */}
+            {classNames}
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>
