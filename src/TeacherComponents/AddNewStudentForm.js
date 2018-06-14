@@ -3,7 +3,7 @@ import {Modal, Button, Header, Form} from 'semantic-ui-react'
 
 import StudentAdapter from '../Adapters/StudentAdapter'
 
-import {AddNewStudent, changeDisplayedClassroom} from '../Redux/ActionCreators'
+import {updateClassroom, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 class AddNewStudentForm extends Component{
@@ -31,7 +31,7 @@ class AddNewStudentForm extends Component{
       if(resp.errors){
         this.setState({errors: resp.errors})
       } else {
-        this.props.AddNewStudent(resp)
+        this.props.updateClassroom(resp)
         this.props.changeDisplayedClassroom(resp)
       }
     })
@@ -64,8 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddNewStudent: (classroomObject) =>{
-      return dispatch(AddNewStudent(classroomObject))
+    updateClassroom: (classroomObject) =>{
+      return dispatch(updateClassroom(classroomObject))
     },
     changeDisplayedClassroom: (classroomObject) =>{
       return dispatch(changeDisplayedClassroom(classroomObject))

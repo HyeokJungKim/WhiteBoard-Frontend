@@ -14,10 +14,21 @@ class TeacherInformationForStudent extends Component{
   renderStudents = () => {
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.students.length > 0 ){
+      const assignmentIds = displayedClassroom.assignments.map(assignment => {
+        return assignment.id
+      })
+
       return displayedClassroom.students.map(student => {
           let average = 0
-          student.grades.forEach(grade => average += grade.grade)
-          average = Math.round(average/student.grades.length * 100)/100
+          let counter = 0
+          student.grades.forEach(grade => {
+            if(assignmentIds.includes(grade.assignment_id)){
+              average += grade.grade
+              counter += 1
+            }
+          })
+          average = Math.round(average/counter * 100)/100
+
           return(
           <Table.Row>
             <Table.Cell>{`${student.firstName} ${student.lastName}`}</Table.Cell>

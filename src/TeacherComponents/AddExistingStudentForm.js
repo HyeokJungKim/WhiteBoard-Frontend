@@ -3,7 +3,7 @@ import {Modal, Button, Header, Form} from 'semantic-ui-react'
 
 import ClassAdapter from '../Adapters/ClassAdapter'
 
-import {AddNewAssignment} from '../Redux/ActionCreators'
+import {updateClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 
@@ -54,8 +54,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddNewAssignment: (classroomObj) =>{
-      return dispatch(AddNewAssignment(classroomObj))
+    updateClassroom: (classroomObj) =>{
+      return dispatch(updateClassroom(classroomObj))
     },
   }
 }

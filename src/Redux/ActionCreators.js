@@ -29,18 +29,9 @@ export const changeDisplayedClassroom = (classroomObject) => {
   }
 }
 
-export const AddNewAssignment = (classroomObject) =>{
+export const updateClassroom = (classroomObject) =>{
   return{
-    type: 'ADDNEWASSIGNMENT',
-    payload:{
-      classrooms: {...classroomObject}
-    }
-  }
-}
-
-export const AddNewStudent = (classroomObject) => {
-  return {
-    type: 'ADDNEWSTUDENT',
-    payload: {...classroomObject}
+    type: 'UPDATECLASSROOM',
+    payload: classroomObject
   }
 }

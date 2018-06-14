@@ -69,7 +69,6 @@ class TeacherGradeBook extends Component{
     const assignments = this.renderAssignments()
     const students = this.renderStudents()
     const className = this.renderClassName()
-
     return(
       <Container>
         {className}

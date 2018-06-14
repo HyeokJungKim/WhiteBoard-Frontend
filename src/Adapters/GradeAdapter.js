@@ -14,7 +14,7 @@ class GradeAdapter{
 
   static editGrade(id, gradeData){
     return fetch(`${API}/grades/${id}`, {
-      method: "POST",
+      method: "PATCH",
       headers: {
         'Accept': 'application/json',
         "Content-Type": 'application/json',
@@ -22,7 +22,7 @@ class GradeAdapter{
       body: JSON.stringify(gradeData)
     })
     .then(resp => resp.json())
-    }
+  }
 
 }
 

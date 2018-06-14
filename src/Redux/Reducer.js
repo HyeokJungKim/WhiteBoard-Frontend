@@ -5,8 +5,6 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) =>{
-  let index = -1
-  let classrooms = [...state.classrooms]
   switch(action.type){
     case 'INITIALIZETEACHER':
       return {...state, ...action.payload}
@@ -14,21 +12,9 @@ const reducer = (state = initialState, action) =>{
     case 'INITIALIZESTUDENT':
       return {...state, ...action.payload}
 
-    case 'ADDNEWASSIGNMENT':
-      index = classrooms.forEach((classroom, index) => {
-        if(classroom.id === action.payload.id){
-          return index
-        }
-      })
-      classrooms[index] = action.payload
-      return {...state, classrooms:[...classrooms], displayedClassroom: action.payload}
-
-    case 'ADDNEWSTUDENT':
-      index = classrooms.forEach((classroom, index) => {
-        if(classroom.id === action.payload.id){
-          return index
-        }
-      })
+    case 'UPDATECLASSROOM':
+    let classrooms = [...state.classrooms]
+      let index = classrooms.findIndex(classroom => parseInt(classroom.id) == action.payload.id)
       classrooms[index] = action.payload
       return {...state, classrooms:[...classrooms], displayedClassroom: action.payload}
 

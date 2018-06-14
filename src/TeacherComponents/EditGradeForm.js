@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {Modal, Button, Header, Form, Icon} from 'semantic-ui-react'
+import {Modal, Header, Form, Icon, Segment} from 'semantic-ui-react'
 
 import GradeAdapter from '../Adapters/GradeAdapter'
 
-import {AddNewAssignment, changeDisplayedClassroom} from '../Redux/ActionCreators'
+import {updateClassroom, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'
 
 
@@ -27,15 +27,22 @@ class EditGradeForm extends Component{
   }
 
   handleClick = (event) => {
-    console.log(event);
     const gradeData = {grade: this.state.grade}
-    
+    GradeAdapter.editGrade(this.props.gradeID, gradeData)
+    .then(resp=>{
+      this.props.closeEdit()
+      this.props.updateClassroom(resp)
+      this.props.changeDisplayedClassroom(resp)
+    })
   }
 
   render(){
     return(
       <Modal size={"small"} open={this.props.editGrade}>
-        <Header icon="pencil">Add New Assignment<Icon onClick={this.props.closeEdit} name="pencil"/></Header>
+        <Segment clearing>
+        <Header floated="right"><Icon onClick={this.props.closeEdit} name="close"/></Header>
+        <Header floated="left">Add New Assignment</Header>
+        </Segment>
         <Modal.Content>
           <Form>
             <Form.Input type="number" value={this.state.grade} name="grade" onChange={this.handleChange}/>
@@ -56,8 +63,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    AddNewAssignment: (classroomObject) =>{
-      return dispatch(AddNewAssignment(classroomObject))
+    updateClassroom: (classroomObject) =>{
+      return dispatch(updateClassroom(classroomObject))
     },
     changeDisplayedClassroom: (classroomObject) =>{
       return dispatch(changeDisplayedClassroom(classroomObject))
