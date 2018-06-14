@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Button, Header, Form} from 'semantic-ui-react'
+import {Modal, Button, Header, Form, Segment, Icon} from 'semantic-ui-react'
 
 import ClassAdapter from '../Adapters/ClassAdapter'
 
@@ -11,6 +11,15 @@ class AddNewAssignmentForm extends Component{
   state={
     description: "",
     error: "",
+    open: false
+  }
+
+  onClick = () => {
+    this.setState({open:true})
+  }
+
+  close = () => {
+    this.setState({open:false})
   }
 
   handleChange = (event) => {
@@ -26,6 +35,7 @@ class AddNewAssignmentForm extends Component{
       if(resp.error){
         this.setState({error: resp.error})
       } else {
+        this.close()
         this.props.updateClassroom(resp)
         this.props.changeDisplayedClassroom(resp)
       }
@@ -35,16 +45,26 @@ class AddNewAssignmentForm extends Component{
   render(){
     const error = <h4>{this.state.error}</h4>
     return(
-      <Modal size={"large"} trigger={<Button size="small" floated="right">Add New Assignment</Button>} closeIcon>
-        <Header icon="pencil" content="Add New Assignment"></Header>
-        {error}
-        <Modal.Content>
-          <Form>
-            <Form.TextArea value={this.state.description} onChange={this.handleChange} label="New Assignment" name="description" placeholder="Write a description for this homework assignment..."/>
-            <Form.Button onClick={this.handleClick}>Submit</Form.Button>
-          </Form>
-        </Modal.Content>
-      </Modal>
+      <div>
+        <Button size="small" floated="right" onClick={this.onClick}>Add New Assignment</Button>
+        {this.state.open ?
+          <Modal size={"large"} open={this.state.open} closeIcon>
+            <Segment basic>
+              <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
+              <Header floated="left" icon="pencil" content="Add New Assignment"></Header>
+              {error}
+            </Segment>
+            <Modal.Content>
+              <Form>
+                <Form.TextArea value={this.state.description} onChange={this.handleChange} label="New Assignment" name="description" placeholder="Write a description for this homework assignment..."/>
+                <Form.Button onClick={this.handleClick}>Submit</Form.Button>
+              </Form>
+            </Modal.Content>
+          </Modal>
+        :
+          null
+        }
+      </div>
     )
   }
 }

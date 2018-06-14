@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Button, Header, Form} from 'semantic-ui-react'
+import {Modal, Button, Header, Form, Segment, Icon} from 'semantic-ui-react'
 
 import StudentAdapter from '../Adapters/StudentAdapter'
 
@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 class AddNewStudentForm extends Component{
   state={
+    open: false,
     firstName: "",
     lastName: "",
     errors: [],
@@ -31,26 +32,45 @@ class AddNewStudentForm extends Component{
       if(resp.errors){
         this.setState({errors: resp.errors})
       } else {
+        this.close()
         this.props.updateClassroom(resp)
         this.props.changeDisplayedClassroom(resp)
       }
     })
   }
 
+  onClick = () => {
+    this.setState({open: true})
+  }
+
+  close = () => {
+    this.setState({open: false})
+  }
+
   render(){
     return(
-      <Modal size={"large"} trigger={<Button size="small" floated="right">Add New Student</Button>} closeIcon>
-        <Header icon="book" content="Add New Student"></Header>
-        <Modal.Content>
-        <Form>
-          <Form.Group widths='equal'>
-            <Form.Input name="firstName" value={this.state.firstName} onChange={this.handleChange} label="First Name" placeholder="First Name"/>
-            <Form.Input name="lastName" value={this.state.lastName} onChange={this.handleChange} label="Last Name" placeholder="Last Name"/>
-          </Form.Group>
-          <Form.Button onClick={this.handleClick}>Submit</Form.Button>
-        </Form>
-        </Modal.Content>
-      </Modal>
+      <div>
+        <Button onClick={this.onClick} size="small" floated="right">Add New Student</Button>
+      {this.state.open ?
+        <Modal size={"large"} open={this.state.open} closeIcon>
+          <Segment basic>
+            <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
+            <Header floated="left" icon="book" content="Add New Student"></Header>
+          </Segment>
+          <Modal.Content>
+          <Form>
+            <Form.Group widths='equal'>
+              <Form.Input name="firstName" value={this.state.firstName} onChange={this.handleChange} label="First Name" placeholder="First Name"/>
+              <Form.Input name="lastName" value={this.state.lastName} onChange={this.handleChange} label="Last Name" placeholder="Last Name"/>
+            </Form.Group>
+            <Form.Button onClick={this.handleClick}>Submit</Form.Button>
+          </Form>
+          </Modal.Content>
+        </Modal>
+      :
+        null
+      }
+      </div>
     )
   }
 }

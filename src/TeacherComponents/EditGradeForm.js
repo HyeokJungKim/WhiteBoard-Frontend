@@ -39,9 +39,9 @@ class EditGradeForm extends Component{
   render(){
     return(
       <Modal size={"small"} open={this.props.editGrade}>
-        <Segment clearing>
-        <Header floated="right"><Icon onClick={this.props.closeEdit} name="close"/></Header>
-        <Header floated="left">Add New Assignment</Header>
+        <Segment basic>
+          <Header floated="right"><Icon onClick={this.props.closeEdit} name="close"/></Header>
+          <Header floated="left" icon="calculator" content="Edit Grade"/>
         </Segment>
         <Modal.Content>
           <Form>
