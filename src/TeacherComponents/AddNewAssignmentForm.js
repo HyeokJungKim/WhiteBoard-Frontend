@@ -48,7 +48,7 @@ class AddNewAssignmentForm extends Component{
       <div>
         <Button size="small" floated="right" onClick={this.onClick}>Add New Assignment</Button>
         {this.state.open ?
-          <Modal size={"large"} open={this.state.open} closeIcon>
+          <Modal size={"large"} open={this.state.open}>
             <Segment basic>
               <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
               <Header floated="left" icon="pencil" content="Add New Assignment"></Header>

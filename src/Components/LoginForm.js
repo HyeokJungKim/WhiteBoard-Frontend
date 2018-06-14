@@ -51,7 +51,6 @@ class LoginForm extends Component{
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
           .then(classes => {
-            console.log(classes);
             this.props.initializeTeacher(classes)
             this.props.history.push('/home')
           })
@@ -66,7 +65,6 @@ class LoginForm extends Component{
           this.setLocalStorage(json)
           StudentAdapter.getClasses()
           .then(classes =>{
-            console.log(classes);
             this.props.initializeStudent(classes)
             this.props.history.push('/home')
           })
