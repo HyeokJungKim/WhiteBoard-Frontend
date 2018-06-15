@@ -48,6 +48,7 @@ class AddNewStudentForm extends Component{
   }
 
   render(){
+    const errors = this.state.errors.map(error => <h4>{error}</h4>)
     return(
       <div>
         <Button onClick={this.onClick} size="small" floated="right">Add New Student</Button>
@@ -56,6 +57,7 @@ class AddNewStudentForm extends Component{
           <Segment basic>
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             <Header floated="left" icon="book" content="Add New Student"></Header>
+            {errors}
           </Segment>
           <Modal.Content>
           <Form>

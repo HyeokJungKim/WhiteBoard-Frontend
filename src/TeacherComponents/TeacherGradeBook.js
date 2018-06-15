@@ -5,12 +5,14 @@ import {Container, Table, Grid} from 'semantic-ui-react'
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
+import ListOfExistingStudents from './ListOfExistingStudents'
 import EditGradeForm from './EditGradeForm'
 
 class TeacherGradeBook extends Component{
   state={
     editGrade: false,
-    gradeID: ""
+    gradeID: "",
+    students: []
   }
 
   renderAssignments = () => {
@@ -65,6 +67,14 @@ class TeacherGradeBook extends Component{
     }
   }
 
+  setStudents = (studentsArr) => {
+    this.setState({students: studentsArr})
+  }
+
+  resetStudents = () => {
+    this.setState({students: []})
+  }
+
   render(){
     const assignments = this.renderAssignments()
     const students = this.renderStudents()
@@ -78,7 +88,7 @@ class TeacherGradeBook extends Component{
               <AddNewAssignmentForm/>
             </Grid.Column>
             <Grid.Column>
-              <AddExistingStudentForm/>
+              <AddExistingStudentForm setStudents={this.setStudents}/>
             </Grid.Column>
             <Grid.Column>
               <AddNewStudentForm/>
@@ -96,6 +106,11 @@ class TeacherGradeBook extends Component{
         </Table>
         {this.state.editGrade ?
           <EditGradeForm gradeID={this.state.gradeID} editGrade={this.state.editGrade} closeEdit={this.closeEdit}/>
+          :
+          null
+        }
+        {this.state.students.length > 1 ?
+          <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
           :
           null
         }

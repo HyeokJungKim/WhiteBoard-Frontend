@@ -10,8 +10,8 @@ import {connect} from 'react-redux'
 class AddNewAssignmentForm extends Component{
   state={
     description: "",
+    open: false,
     error: "",
-    open: false
   }
 
   onClick = () => {

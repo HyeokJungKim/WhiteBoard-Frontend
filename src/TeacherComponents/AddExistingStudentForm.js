@@ -12,14 +12,15 @@ class AddExistingStudentForm extends Component{
     open: false,
     schools: [],
     password: "",
-    schoolID: null
+    schoolID: "",
+    error: "",
   }
 
   componentDidMount = () => {
     SchoolAdapter.getSchools()
     .then(resp => {
         let schools = resp.map(school => {
-          return {id:`${school.id}`, key: `${school.id}`, value: `${school.name}`, text: `${school.name}`}
+          return {id:school.id, key: school.id, value: `${school.name}`, text: `${school.name}`}
         })
         this.setState({schools: schools})
     })
@@ -40,17 +41,25 @@ class AddExistingStudentForm extends Component{
   }
 
   handleSelect = (event) => {
-    this.setState({schoolID: event.target.id})
+    this.setState({schoolID: event.currentTarget.id})
   }
 
   submitForm= () => {
     const {password} = this.state
     let schoolData = {password}
     SchoolAdapter.getStudents(this.state.schoolID, schoolData)
-    .then(resp =>{console.log(resp)})
+    .then(resp =>{
+      if(resp.error){
+        this.setState({error: resp.error})
+      } else {
+        this.props.setStudents(resp)
+        this.close()
+      }
+    })
   }
 
   render(){
+    const error = <h4>{this.state.error}</h4>
     return(
       <div>
       <Button size="small" onClick={this.onClick} floated="right">Add Existing Student</Button>
@@ -59,20 +68,19 @@ class AddExistingStudentForm extends Component{
           <Segment basic>
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             <Header icon="book" content="Add Existing Student"></Header>
+            {error}
           </Segment>
           <Modal.Content>
             <Form>
               <Form.Field control={Select} label="School" onChange={this.handleSelect} placeholder="Select your school" options={this.state.schools}/>
               <Form.Input type="password" onChange={this.handleChange} label="Password" name="password" placeholder="Password"/>
-              <Form.Button onClick={this.submitForm}>Find School</Form.Button>
-
+              <Form.Button onClick={this.submitForm}>Find Students</Form.Button>
             </Form>
           </Modal.Content>
         </Modal>
       :
         null
       }
-
       </div>
     )
   }

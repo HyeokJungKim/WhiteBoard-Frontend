@@ -13,6 +13,18 @@ class ClassAdapter{
     .then(resp => resp.json())
   }
 
+  static addStudent(id, studentsArr){
+    return fetch(`${API}/classrooms/${id}/students`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      },
+      body: JSON.stringify(studentsArr)
+    })
+    .then(resp => resp.json())
+  }
+
 }
 
 export default ClassAdapter

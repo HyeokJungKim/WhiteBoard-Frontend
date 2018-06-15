@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 class EditGradeForm extends Component{
   state={
     grade: "",
-    errors: "",
+    errors: [],
   }
 
   componentDidMount = () => {
@@ -32,7 +32,7 @@ class EditGradeForm extends Component{
     .then(resp=>{
       if(resp.errors){
         this.setState({error: resp.errors})
-      } else{ 
+      } else{
         this.props.closeEdit()
         this.props.updateClassroom(resp)
         this.props.changeDisplayedClassroom(resp)
@@ -41,11 +41,13 @@ class EditGradeForm extends Component{
   }
 
   render(){
+    const errors = this.state.errors.map(error => <h4>{error}</h4>)
     return(
       <Modal size={"small"} open={this.props.editGrade}>
         <Segment basic>
           <Header floated="right"><Icon onClick={this.props.closeEdit} name="close"/></Header>
           <Header floated="left" icon="calculator" content="Edit Grade"/>
+          {errors}
         </Segment>
         <Modal.Content>
           <Form>

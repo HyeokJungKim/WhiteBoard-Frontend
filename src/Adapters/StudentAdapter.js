@@ -47,9 +47,7 @@ class StudentAdapter{
     })
     .then(resp => resp.json())
   }
-
-
-
+  
 }
 
 
