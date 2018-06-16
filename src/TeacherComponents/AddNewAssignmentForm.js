@@ -28,8 +28,12 @@ class AddNewAssignmentForm extends Component{
     })
   }
 
+  titleize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   handleClick = (event) => {
-    const classData = {description: this.state.description}
+    const classData = {description: this.titleize(this.state.description.trim())}
     ClassAdapter.createAssignment(this.props.displayedClassroom.id, classData)
     .then(resp =>{
       if(resp.error){

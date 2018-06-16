@@ -55,7 +55,6 @@ class RegistrationForm extends Component{
             this.setLocalStorage(json)
             TeacherAdapter.getClasses()
             .then(classes => {
-              console.log(classes);
               this.props.initializeTeacher(classes)
               this.props.history.push('/home')
             })
@@ -88,6 +87,7 @@ class RegistrationForm extends Component{
       <div>
         {errors}
         <Form>
+
           <Form.Input onChange={this.handleChange} value={this.state.firstName} label='First Name' name="firstName" placeholder="First Name" />
           <Form.Input onChange={this.handleChange} value={this.state.lastName} label='Last Name' name="lastName" placeholder="Last Name" />
           <Form.Input onChange={this.handleChange} value={this.state.username} label="Username" name="username" placeholder="Username" />
@@ -97,7 +97,7 @@ class RegistrationForm extends Component{
             <Radio label="I am a teacher" value="teacher" name="forWhom" checked={this.state.forWhom === "teacher"} onChange={this.handleRadio}/>
           </Form.Field>
           <Form.Field>
-            <Radio label="I am a student" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
+            <Radio label="I am registering for a school" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
           </Form.Field>
         </Form>
         <Divider hidden/>

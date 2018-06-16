@@ -31,7 +31,11 @@ class TeacherInformationForStudent extends Component{
               counter += 1
             }
           })
-          average = Math.round(average/counter * 100)/100
+          if(counter > 0){
+            average = Math.round(average/counter * 100)/100
+          } else {
+            average = 0
+          }
 
           return(
           <Table.Row key={student.id}>

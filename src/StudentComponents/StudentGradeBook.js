@@ -64,7 +64,7 @@ class StudentGradeBook extends Component{
               {assignments}
           </Table.Body>
         </Table>
-        <OneClassInfo displayedClassroom={this.props.displayedClassroom} validDisplay={this.validDisplay}/>
+        <OneClassInfo validDisplay={this.validDisplay}/>
       </Container>
     )
   }

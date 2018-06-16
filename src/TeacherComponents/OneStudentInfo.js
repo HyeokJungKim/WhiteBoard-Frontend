@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {connect} from 'react-redux'
 import StudentAdapter from '../Adapters/StudentAdapter'
 
 import {Container} from 'semantic-ui-react'
@@ -13,7 +13,10 @@ class OneStudentInfo extends Component{
 
   componentDidMount = () => {
     StudentAdapter.getGrades(this.props.studentToDisplay)
-    .then(resp => console.log(resp))
+    .then(resp => {
+      const display = resp.classrooms.find(classroom => classroom.id === this.props.displayedClassroom.id)
+      console.log(display)
+    })
   }
 
   render(){
@@ -28,4 +31,11 @@ class OneStudentInfo extends Component{
   }
 }
 
-export default OneStudentInfo
+const mapStateToProps = (state) => {
+  return {
+    displayedClassroom: state.displayedClassroom,
+  }
+}
+
+
+export default connect(mapStateToProps)(OneStudentInfo)
