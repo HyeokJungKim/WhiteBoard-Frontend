@@ -39,8 +39,7 @@ class TeacherRegistrationForm extends Component{
     }, ()=>{
       if(!this.state.validSchool && this.state.schoolPassword && this.state.schoolID){
         this.setState({isDisabled: false})
-
-      }else if(this.state.firstName && this.state.lastName && this.state.username && this.state.password && this.state.passwordConfirmation){
+      }else if(this.state.validSchool && this.state.firstName && this.state.lastName && this.state.username && this.state.password && this.state.passwordConfirmation){
         this.setState({isDisabled:false})
       } else{
         this.setState({isDisabled:true})
@@ -86,8 +85,9 @@ class TeacherRegistrationForm extends Component{
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
           .then(classes => {
-            this.props.initializeTeacher(classes)
-            this.props.history.push('/home')
+            //FIXME: NEED TO REDIRECT TO CREATING A CLASS
+            // this.props.initializeTeacher(classes)
+            this.props.history.push('/create_first_class')
           })
         }
       })

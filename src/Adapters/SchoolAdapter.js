@@ -12,6 +12,18 @@ class SchoolAdapter{
     .then(resp => resp.json())
   }
 
+  static createSchool(schoolInfo){
+    return fetch(`${API}/schools`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      },
+      body: JSON.stringify(schoolInfo)
+    })
+    .then(resp => resp.json())
+  }
+
   static validateSchool(id, schoolPassword){
     return fetch(`${API}/validateSchool/${id}`, {
       method: "POST",

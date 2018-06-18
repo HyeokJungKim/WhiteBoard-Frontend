@@ -109,10 +109,11 @@ class TeacherGradeBook extends Component{
           :
           null
         }
-        {this.state.students.length > 1 ?
+        {this.state.students.length > 0 ?
           <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
           :
           null
+          //FIXME: STUDENTS CANNOT BE 0 
         }
       </Container>
     )

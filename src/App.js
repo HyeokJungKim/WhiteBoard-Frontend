@@ -23,6 +23,9 @@ class App extends Component {
           <p>LOGIN PATH IN APP.JS</p>
         </Route>
 
+        <Route path='/create_first_class'>
+          <p>Create First Class</p>
+        </Route>
 
         {localStorage.getItem('token') ?
           <Route path='/home' render={(props) => <HomeContainer {...props}/> }></Route>
