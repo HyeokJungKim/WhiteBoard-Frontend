@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Grid} from 'semantic-ui-react'
+import {Container, Table, Grid, Divider} from 'semantic-ui-react'
 
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
@@ -84,7 +84,7 @@ class TeacherGradeBook extends Component{
         {className}
         <Grid columns={3}>
           <Grid.Row>
-            
+
             <Grid.Column>
               <AddNewAssignmentForm/>
             </Grid.Column>
@@ -99,28 +99,32 @@ class TeacherGradeBook extends Component{
 
           </Grid.Row>
         </Grid>
+        <Divider hidden/>
 
-        <Table fixed definition compact collapsing>
-          <Table.Header>
-            <Table.HeaderCell />
-              {assignments}
-          </Table.Header>
-          <Table.Body>
-            {students}
-          </Table.Body>
-        </Table>
+        <Container className="gradebook">
+          <Table fixed definition compact collapsing >
+            <Table.Header>
+              <Table.HeaderCell />
+                {assignments}
+            </Table.Header>
+            <Table.Body>
+              {students}
+            </Table.Body>
+          </Table>
+          <Divider hidden/>
+        </Container>
 
-        {this.state.editGrade ?
-          <EditGradeForm gradeID={this.state.gradeID} editGrade={this.state.editGrade} closeEdit={this.closeEdit}/>
-          :
-          null
-        }
-        {this.state.students.length > 0 ?
-          <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
-          :
-          null
-          //FIXME: STUDENTS CANNOT BE 0
-        }
+          {this.state.editGrade ?
+            <EditGradeForm gradeID={this.state.gradeID} editGrade={this.state.editGrade} closeEdit={this.closeEdit}/>
+            :
+            null
+          }
+          {this.state.students.length > 0 ?
+            <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
+            :
+            null
+            //FIXME: STUDENTS CANNOT BE 0
+          }
       </Container>
     )
   }

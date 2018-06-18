@@ -31,7 +31,11 @@ class AddExistingStudentForm extends Component{
   }
 
   close = () => {
-    this.setState({open:false})
+    this.setState({open:false,
+      password: "",
+      schoolID: "",
+      error: "",
+    })
   }
 
   handleChange = (event) => {

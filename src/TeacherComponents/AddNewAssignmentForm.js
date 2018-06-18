@@ -19,7 +19,10 @@ class AddNewAssignmentForm extends Component{
   }
 
   close = () => {
-    this.setState({open:false})
+    this.setState({open:false,
+      description: "",
+      error: "",
+    })
   }
 
   handleChange = (event) => {

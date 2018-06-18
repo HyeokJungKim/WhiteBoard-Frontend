@@ -44,7 +44,10 @@ class AddNewStudentForm extends Component{
   }
 
   close = () => {
-    this.setState({open: false})
+    this.setState({open: false,
+      firstName: "",
+      lastName: "",
+    })
   }
 
   render(){
