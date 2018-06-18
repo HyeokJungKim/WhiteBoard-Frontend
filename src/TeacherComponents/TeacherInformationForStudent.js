@@ -58,6 +58,10 @@ class TeacherInformationForStudent extends Component{
     this.setState({studentToDisplay: event.target.id})
   }
 
+  close = () => {
+    this.setState({studentToDisplay: null})
+  }
+
   render(){
     const className = this.renderClassName()
     const students = this.renderStudents()
@@ -73,7 +77,7 @@ class TeacherInformationForStudent extends Component{
           {students}
         </Table>
         {this.state.studentToDisplay ?
-          <OneStudentInfo studentToDisplay={this.state.studentToDisplay}/>
+          <OneStudentInfo close={this.close} studentToDisplay={this.state.studentToDisplay}/>
         :
           null
         }

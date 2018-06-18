@@ -9,7 +9,7 @@ import {Container, Icon, Segment, Header} from 'semantic-ui-react'
 class OneStudentInfo extends Component{
   state={
     studentName: "",
-    showChart: true,
+    showChart: false,
     chartInfo: {
       labels:[],
       datasets:[]
@@ -63,6 +63,7 @@ class OneStudentInfo extends Component{
 
   close = () => {
     this.setState({showChart: false})
+    this.props.close()
   }
 
   render(){
