@@ -56,8 +56,8 @@ class AddNewAssignmentForm extends Component{
             <Segment basic>
               <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
               <Header floated="left" icon="pencil" content="Add New Assignment"></Header>
-              {error}
             </Segment>
+            {error}
             <Modal.Content>
               <Form>
                 <Form.TextArea value={this.state.description} onChange={this.handleChange} label="New Assignment" name="description" placeholder="Write a description for this homework assignment..."/>

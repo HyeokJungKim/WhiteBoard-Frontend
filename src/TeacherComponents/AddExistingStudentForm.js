@@ -68,8 +68,8 @@ class AddExistingStudentForm extends Component{
           <Segment basic>
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             <Header icon="book" content="Add Existing Student"></Header>
-            {error}
           </Segment>
+          {error}
           <Modal.Content>
             <Form>
               <Form.Field control={Select} label="School" onChange={this.handleSelect} placeholder="Select your school" options={this.state.schools}/>

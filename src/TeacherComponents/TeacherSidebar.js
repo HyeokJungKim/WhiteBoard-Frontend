@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, List } from 'semantic-ui-react'
+import { Accordion, Icon, List, Button } from 'semantic-ui-react'
 
 class TeacherSidebar extends Component{
   state = {
@@ -41,7 +41,9 @@ class TeacherSidebar extends Component{
           <Accordion.Content active={activeIndex === 0}>
             <List>
               {classNamesForGrades}
+              <Button floated="right" onClick={this.props.renderForm} content="Add New Class"/>
             </List>
+            <div/>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>

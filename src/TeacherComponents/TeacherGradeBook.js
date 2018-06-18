@@ -84,17 +84,22 @@ class TeacherGradeBook extends Component{
         {className}
         <Grid columns={3}>
           <Grid.Row>
+            
             <Grid.Column>
               <AddNewAssignmentForm/>
             </Grid.Column>
+
             <Grid.Column>
               <AddExistingStudentForm setStudents={this.setStudents}/>
             </Grid.Column>
+
             <Grid.Column>
               <AddNewStudentForm/>
             </Grid.Column>
+
           </Grid.Row>
         </Grid>
+
         <Table fixed definition compact collapsing>
           <Table.Header>
             <Table.HeaderCell />
@@ -104,6 +109,7 @@ class TeacherGradeBook extends Component{
             {students}
           </Table.Body>
         </Table>
+
         {this.state.editGrade ?
           <EditGradeForm gradeID={this.state.gradeID} editGrade={this.state.editGrade} closeEdit={this.closeEdit}/>
           :
@@ -113,7 +119,7 @@ class TeacherGradeBook extends Component{
           <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
           :
           null
-          //FIXME: STUDENTS CANNOT BE 0 
+          //FIXME: STUDENTS CANNOT BE 0
         }
       </Container>
     )

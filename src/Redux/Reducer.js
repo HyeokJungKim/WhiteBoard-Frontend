@@ -18,6 +18,8 @@ const reducer = (state = initialState, action) =>{
       classrooms[index] = action.payload
       return {...state, classrooms:[...classrooms], displayedClassroom: action.payload}
 
+    case 'ADDCLASSROOM':
+      return {...state, ...action.payload}
     case 'CHANGEDISPLAY':
       return {...state, ...action.payload}
     default:

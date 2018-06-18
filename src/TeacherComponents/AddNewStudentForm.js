@@ -53,12 +53,12 @@ class AddNewStudentForm extends Component{
       <div>
         <Button onClick={this.onClick} size="small" floated="right">Add New Student</Button>
       {this.state.open ?
-        <Modal size={"large"} open={this.state.open} closeIcon>
+        <Modal size={"large"} open={this.state.open}>
           <Segment basic>
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             <Header floated="left" icon="book" content="Add New Student"></Header>
-            {errors}
           </Segment>
+          {errors}
           <Modal.Content>
           <Form>
             <Form.Group widths='equal'>

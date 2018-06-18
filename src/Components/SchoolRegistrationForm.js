@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Form, Button, Divider} from 'semantic-ui-react'
 import SchoolAdapter from '../Adapters/SchoolAdapter'
-import {initializeTeacher} from '../Redux/ActionCreators'
 
 class SchoolRegistrationForm extends Component{
   state = {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import StudentAdapter from '../Adapters/StudentAdapter'
 
-import {Container} from 'semantic-ui-react'
 import {Bar} from 'react-chartjs-2';
 
 class OneStudentInfo extends Component{

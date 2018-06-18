@@ -18,6 +18,7 @@ import {initializeTeacher, changeDisplayedClassroom, initializeStudent} from '..
 class HomeContainer extends Component{
   state={
     display: "",
+    addClassForm: false,
   }
 
   componentDidMount = () => {
@@ -49,6 +50,14 @@ class HomeContainer extends Component{
     this.props.changeDisplayedClassroom(classToDisplay)
   }
 
+  renderForm = () => {
+    this.setState({addClassForm: true})
+  }
+
+  closeForm = () => {
+    this.setState({addClassForm: false})
+  }
+
   render(){
     return(
       <div>
@@ -58,15 +67,15 @@ class HomeContainer extends Component{
             <Grid.Row>
               <Grid.Column width={4}>
                 {this.props.isTeacher ?
-                  <TeacherSidebar display={this.state.display} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
+                  <TeacherSidebar renderForm={this.renderForm} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                   :
-                  <StudentSidebar display={this.state.display} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
+                  <StudentSidebar changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                 }
               </Grid.Column>
 
               <Grid.Column width={12}>
                 {this.props.isTeacher ?
-                  <TeacherMainContainer display={this.state.display}/>
+                  <TeacherMainContainer closeForm={this.closeForm} addClassForm={this.state.addClassForm} display={this.state.display}/>
                   :
                   <StudentMainContainer/>
                 }

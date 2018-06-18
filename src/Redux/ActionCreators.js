@@ -35,3 +35,13 @@ export const updateClassroom = (classroomObject) =>{
     payload: classroomObject
   }
 }
+
+export const addClassroom = (classroomObject) => {
+  return{
+    type: 'ADDCLASSROOM',
+    payload: {
+      classrooms: classroomObject.classrooms,
+      displayedClassroom: classroomObject.classrooms[classroomObject.classrooms.length -1]
+    }
+  }
+}
