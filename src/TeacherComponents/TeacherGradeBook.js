@@ -19,10 +19,10 @@ class TeacherGradeBook extends Component{
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
-         return <Table.HeaderCell key={assignment.id}>{assignment.description}</Table.HeaderCell>
+         return <Table.HeaderCell textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
-      return <Table.HeaderCell> You don't have any assignments!</Table.HeaderCell>
+      return <Table.HeaderCell textAlign="center"> You don't have any assignments!</Table.HeaderCell>
     }
   }
 
@@ -38,11 +38,11 @@ class TeacherGradeBook extends Component{
           return assignmentIds.includes(grade.assignment_id)
         })
         let filteredGrades = grades.map(grade => {
-          return <Table.Cell key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
+          return <Table.Cell textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
         })
         return (
           <Table.Row key={student.id}>
-            <Table.Cell>{`${student.firstName} ${student.lastName}`}</Table.Cell>
+            <Table.Cell >{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {filteredGrades}
           </Table.Row>
         )
@@ -95,7 +95,7 @@ class TeacherGradeBook extends Component{
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Table fixed definition compact>
+        <Table fixed definition compact collapsing>
           <Table.Header>
             <Table.HeaderCell />
               {assignments}

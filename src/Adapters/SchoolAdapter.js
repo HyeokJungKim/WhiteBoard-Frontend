@@ -2,13 +2,24 @@ const API = 'http://localhost:3000'
 class SchoolAdapter{
 
   static getSchools(){
-
     return fetch(`${API}/schools`, {
       method: "GET",
       headers: {
         'Accept': 'application/json',
         "Content-Type": 'application/json',
       }
+    })
+    .then(resp => resp.json())
+  }
+
+  static validateSchool(id, schoolPassword){
+    return fetch(`${API}/validateSchool/${id}`, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      },
+      body: JSON.stringify(schoolPassword)
     })
     .then(resp => resp.json())
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, List } from 'semantic-ui-react'
+import { Accordion, Icon, List, Sticky } from 'semantic-ui-react'
 
 class StudentSidebar extends Component{
   state = {
@@ -25,7 +25,7 @@ class StudentSidebar extends Component{
     const { activeIndex } = this.state
     const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
     return (
-      <div>
+      <Sticky>
         <Accordion attached="bottom" fluid styled>
 
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleAccordian}>
@@ -54,7 +54,7 @@ class StudentSidebar extends Component{
             {/* FILL */}
           </Accordion.Content>
         </Accordion>
-      </div>
+      </Sticky>
     )
   }
 }
