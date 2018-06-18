@@ -26,10 +26,20 @@ class OneClassInfo extends Component{
       return assignment.description
     })
 
+    let colors = arr.map(grade => {
+      if(grade < 65){
+        return 'rgba(255, 0, 0, 0.6)'
+      } else if(grade > 65 && grade < 85){
+        return 'rgba(255,255,0,0.6)'
+      } else{
+        return 'rgba(0,0,255,0.6)'
+      }
+    })
+
     this.setState(
       {chartInfo:
         {labels: assignmentDescription,
-          datasets: [{label:`Grades for ${displayedClassroom.name}`, data: arr,}],
+          datasets: [{data: arr, backgroundColor: colors}],
         }
       }
     )
@@ -41,14 +51,27 @@ class OneClassInfo extends Component{
   }
 
   render(){
+    const {displayedClassroom} = this.props
     return(
       <div>
         <Bar
-          options={{scales: { yAxes: [{ticks: {
-              beginAtZero:true,
-              min: 0,
-              max: 100
-            }}]}}}
+          options={{
+            scales: {
+              yAxes:
+              [{ticks: {
+                beginAtZero:true,
+                min: 0,
+                max: 100}}]
+              },
+              legend:{
+                display:false
+              },
+              title:{
+                display: true,
+                text: `Grades for ${displayedClassroom.name}`
+              }
+            }
+          }
           data={this.state.chartInfo}/>
       </div>
     )
