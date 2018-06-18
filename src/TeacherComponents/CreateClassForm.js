@@ -50,8 +50,12 @@ class CreateClassForm extends Component{
     return(
       <Modal size={"large"} open={this.props.addClassForm}>
         <Segment basic>
-          <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
-          <Header floated="left" icon="book" content="Add New Class"></Header>
+          {this.props.firstTime ?
+            null
+            :
+            <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
+          }
+          <Header floated="left" icon="clipboard" content="Add New Class"></Header>
         </Segment>
         {error}
         <Modal.Content>

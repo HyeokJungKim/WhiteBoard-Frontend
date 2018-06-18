@@ -65,8 +65,12 @@ class LoginForm extends Component{
           this.setLocalStorage(json)
           StudentAdapter.getClasses()
           .then(classes =>{
-            this.props.initializeStudent(classes)
-            this.props.history.push('/home')
+            if(classes.isAccount){
+              this.props.initializeStudent(classes)
+              this.props.history.push('/home')
+            }else{
+              this.props.history.push('/reset_information')
+            }
           })
         }
       })

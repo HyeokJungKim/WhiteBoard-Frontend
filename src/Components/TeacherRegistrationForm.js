@@ -85,8 +85,6 @@ class TeacherRegistrationForm extends Component{
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
           .then(classes => {
-            //FIXME: NEED TO REDIRECT TO CREATING A CLASS
-            // this.props.initializeTeacher(classes)
             this.props.history.push('/create_first_class')
           })
         }

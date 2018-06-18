@@ -47,7 +47,19 @@ class StudentAdapter{
     })
     .then(resp => resp.json())
   }
-  
+
+  static updateInformation(id, studentData){
+    return fetch(`${API}/students/${id}`, {
+      method: "PATCH",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+        "Authorization": `${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(studentData)
+    })
+    .then(resp => resp.json())
+  }
 }
 
 

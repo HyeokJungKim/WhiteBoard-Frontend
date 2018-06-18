@@ -29,8 +29,11 @@ class SchoolRegistrationForm extends Component{
       const schoolInfo = {name: schoolName, password}
       SchoolAdapter.createSchool(schoolInfo)
       .then(resp =>{
-        console.log(resp);
-        //FIXME NEED TO FIGURE OUT WHERE TO SEND
+        if(resp.errors){
+          this.setState({errors: resp.errors})
+        }else{
+          this.setState({errors: ["School successfully created!"]})
+        }
       })
     } else {
       this.setState({errors:["Password confirmation does not match password."]})
