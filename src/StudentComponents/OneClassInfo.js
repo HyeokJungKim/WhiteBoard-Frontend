@@ -20,13 +20,13 @@ class OneClassInfo extends Component{
 
   changeStateGrade = (displayedClassroom, display) => {
     let arr = []
-    let assignmentDescription = displayedClassroom.assignments.map(assignment => {
+    const assignmentDescription = displayedClassroom.assignments.map(assignment => {
       let grade = assignment.grades.find(grade => grade.student_id === parseInt(localStorage.getItem('id')))
       arr.push(grade.grade)
       return assignment.description
     })
 
-    let colors = arr.map(grade => {
+    const colors = arr.map(grade => {
       if(grade < 65){
         return 'rgba(255, 0, 0, 0.6)'
       } else if(grade > 65 && grade < 85){

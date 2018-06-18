@@ -27,9 +27,9 @@ class TeacherSidebar extends Component{
 
   render(){
     const { activeIndex } = this.state
-    const classNamesForGrades = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+    const classNamesForGrades = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
 
-    const classNamesForStudents = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeStudentInfoDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+    const classNamesForStudents = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id} ><List.Content onClick={this.changeStudentInfoDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
     return (
       <div>
         <Accordion attached="bottom" fluid styled>
@@ -39,11 +39,10 @@ class TeacherSidebar extends Component{
             Classes
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
-            <List>
+            <List className="list">
               {classNamesForGrades}
-              <Button floated="right" onClick={this.props.renderForm} content="Add New Class"/>
+              <List.Item><Button onClick={this.props.renderForm} content="Add New Class"/></List.Item>
             </List>
-            <div/>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
@@ -51,7 +50,9 @@ class TeacherSidebar extends Component{
             Student Information
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
-            {classNamesForStudents}
+            <List className="list">
+              {classNamesForStudents}
+            </List>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>

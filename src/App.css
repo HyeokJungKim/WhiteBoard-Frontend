@@ -7,3 +7,12 @@
   overflow-x: auto;
   overflow-y: auto;
 }
+
+.list{
+  word-wrap: break-word;
+}
+
+.hover:hover{
+  cursor: pointer;
+  color: blue;
+}

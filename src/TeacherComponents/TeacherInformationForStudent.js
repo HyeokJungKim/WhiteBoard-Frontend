@@ -39,7 +39,7 @@ class TeacherInformationForStudent extends Component{
 
           return(
           <Table.Row key={student.id}>
-            <Table.Cell id={student.id} onClick={this.onClick}>{`${student.firstName} ${student.lastName}`}</Table.Cell>
+            <Table.Cell className="hover" id={student.id} onClick={this.onClick}>{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {student.isAccount ?
               <Table.Cell>{`${student.username}`}</Table.Cell>
             :
@@ -64,7 +64,7 @@ class TeacherInformationForStudent extends Component{
     return(
       <Container>
         {className}
-        <Table singleLine>
+        <Table color={'blue'} fixed compact singleLine >
           <Table.Row>
             <Table.HeaderCell>Name</Table.HeaderCell>
             <Table.HeaderCell>Username</Table.HeaderCell>

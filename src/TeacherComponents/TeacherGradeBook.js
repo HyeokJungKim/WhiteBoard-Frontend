@@ -38,7 +38,7 @@ class TeacherGradeBook extends Component{
           return assignmentIds.includes(grade.assignment_id)
         })
         let filteredGrades = grades.map(grade => {
-          return <Table.Cell textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
+          return <Table.Cell className="hover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
         })
         return (
           <Table.Row key={student.id}>
