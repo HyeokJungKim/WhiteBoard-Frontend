@@ -4,5 +4,6 @@
 
 .gradebook{
   display: block;
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: auto;
 }

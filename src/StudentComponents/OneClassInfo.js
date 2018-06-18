@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import {Bar} from 'react-chartjs-2';
+import {Bar, Line} from 'react-chartjs-2';
 
 class OneClassInfo extends Component{
   state={
@@ -18,7 +18,7 @@ class OneClassInfo extends Component{
     }
   }
 
-  changeStateGrade = (displayedClassroom) => {
+  changeStateGrade = (displayedClassroom, display) => {
     let arr = []
     let assignmentDescription = displayedClassroom.assignments.map(assignment => {
       let grade = assignment.grades.find(grade => grade.student_id === parseInt(localStorage.getItem('id')))
@@ -35,26 +35,34 @@ class OneClassInfo extends Component{
         return 'rgba(0,0,255,0.6)'
       }
     })
-
-    this.setState(
-      {chartInfo:
-        {labels: assignmentDescription,
-          datasets: [{data: arr, backgroundColor: colors}],
+    if(display == "bar"){
+      this.setState(
+        {chartInfo:
+          {labels: assignmentDescription,
+            datasets: [{data: arr, backgroundColor: colors}],
+          }
         }
-      }
-    )
+      )
+    }else {
+      this.setState({chartInfo:
+        {labels: assignmentDescription,
+          datasets: [{data: arr, pointBackgroundColor: colors, borderColor: colors, fill: false}],
+        }
+      })
+    }
+
   }
 
   componentWillReceiveProps = (nextProps) => {
-    const {displayedClassroom} = nextProps
-    this.changeStateGrade(displayedClassroom)
+    const {displayedClassroom, display} = nextProps
+    this.changeStateGrade(displayedClassroom, display)
   }
 
-  render(){
+  whatToDisplay = () => {
     const {displayedClassroom} = this.props
-    return(
-      <div>
-        <Bar
+    switch(this.props.display){
+      case "bar":
+        return <Bar
           options={{
             scales: {
               yAxes:
@@ -73,6 +81,40 @@ class OneClassInfo extends Component{
             }
           }
           data={this.state.chartInfo}/>
+
+      case "line":
+        return <Line
+          options={{
+            scales: {
+              yAxes:
+              [{ticks: {
+                beginAtZero:true,
+                min: 0,
+                max: 100}}]
+              },
+              legend:{
+                display:false
+              },
+              backgroundColor:{
+                display: false
+              },
+              title:{
+                display: true,
+                text: `Grades for ${displayedClassroom.name}`
+              }
+            }
+          }
+          data={this.state.chartInfo}/>
+
+      default:
+        return null
+    }
+  }
+
+  render(){
+    return(
+      <div>
+        {this.whatToDisplay()}
       </div>
     )
   }
