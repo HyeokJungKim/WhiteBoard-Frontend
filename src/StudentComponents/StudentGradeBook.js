@@ -27,12 +27,21 @@ class StudentGradeBook extends Component{
         let studentGrades = filteredGrades.map(grade => {
           return <Table.Cell textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
         })
-        return(
-          <Table.Row key={assignment.id}>
-            <Table.Cell>{assignment.description}</Table.Cell>
-            {studentGrades}
-          </Table.Row>
-        )
+        if(assignment.pdf){
+          return(
+            <Table.Row key={assignment.id}>
+              <Table.Cell>{assignment.description}<a href={assignment.pdf} target="_blank"><Icon name="download"/></a></Table.Cell>
+              {studentGrades}
+            </Table.Row>
+          )
+        } else {
+          return(
+            <Table.Row key={assignment.id}>
+              <Table.Cell>{assignment.description}</Table.Cell>
+              {studentGrades}
+            </Table.Row>
+          )
+        }
       })
 
     } else{

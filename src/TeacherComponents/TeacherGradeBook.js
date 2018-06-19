@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Grid, Divider, Icon} from 'semantic-ui-react'
+import {Container, Table, Grid, Divider} from 'semantic-ui-react'
 
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
 import ListOfExistingStudents from './ListOfExistingStudents'
+import EditAssignmentForm from './EditAssignmentForm'
 import EditGradeForm from './EditGradeForm'
 import NoStudentsAvailable from './NoStudentsAvailable'
 
 class TeacherGradeBook extends Component{
   state={
     editGrade: false,
+    editAssignment: false,
     addExistingStudent: false,
     gradeID: "",
     assignmentID: "",
@@ -22,15 +24,15 @@ class TeacherGradeBook extends Component{
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
-        return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.deleteAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
+        return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.editAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
       return <Table.HeaderCell textAlign="center"> You don't have any assignments!</Table.HeaderCell>
     }
   }
 
-  deleteAssignment = (event) => {
-    this.setState({assignmentID: event.currentTarget.id});
+  editAssignment = (event) => {
+    this.setState({assignmentID: event.currentTarget.id, editAssignment: true})
   }
 
   renderStudents= () => {
@@ -65,6 +67,10 @@ class TeacherGradeBook extends Component{
 
   closeEdit = () => {
     this.setState({editGrade: false, gradeID: ""})
+  }
+
+  closeAssignmentEdit = () => {
+    this.setState({editAssignment: false, assignmentID: ""})
   }
 
   renderClassName = () => {
@@ -125,10 +131,17 @@ class TeacherGradeBook extends Component{
             :
             null
           }
+
           {this.state.students.length > 0 && this.state.addExistingStudent ?
             <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
             :
             <NoStudentsAvailable resetStudents={this.resetStudents} addExistingStudent={this.state.addExistingStudent}/>
+          }
+
+          {this.state.editAssignment ?
+            <EditAssignmentForm assignmentID={this.state.assignmentID} editAssignment={this.state.editAssignment} closeAssignmentEdit={this.closeAssignmentEdit} />
+            :
+            null
           }
       </Container>
     )
