@@ -22,7 +22,7 @@ class TeacherGradeBook extends Component{
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
-         return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.deleteAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
+        return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.deleteAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
       return <Table.HeaderCell textAlign="center"> You don't have any assignments!</Table.HeaderCell>
@@ -107,7 +107,6 @@ class TeacherGradeBook extends Component{
           </Grid.Row>
         </Grid>
         <Divider hidden/>
-
         <Container className="gradebook">
           <Table fixed definition compact collapsing >
             <Table.Header>
