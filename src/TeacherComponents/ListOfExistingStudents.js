@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Header, Button, Segment, Icon, Form, Select, Dropdown, Divider} from 'semantic-ui-react'
+import {Modal, Header, Segment, Icon, Form, Dropdown, Divider} from 'semantic-ui-react'
 
 import ClassAdapter from '../Adapters/ClassAdapter'
 

@@ -1,29 +1,36 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Grid, Divider} from 'semantic-ui-react'
+import {Container, Table, Grid, Divider, Icon} from 'semantic-ui-react'
 
 import AddNewAssignmentForm from './AddNewAssignmentForm'
 import AddNewStudentForm from './AddNewStudentForm'
 import AddExistingStudentForm from './AddExistingStudentForm'
 import ListOfExistingStudents from './ListOfExistingStudents'
 import EditGradeForm from './EditGradeForm'
+import NoStudentsAvailable from './NoStudentsAvailable'
 
 class TeacherGradeBook extends Component{
   state={
     editGrade: false,
+    addExistingStudent: false,
     gradeID: "",
-    students: []
+    assignmentID: "",
+    students: [],
   }
 
   renderAssignments = () => {
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
-         return <Table.HeaderCell textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
+         return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.deleteAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
       return <Table.HeaderCell textAlign="center"> You don't have any assignments!</Table.HeaderCell>
     }
+  }
+
+  deleteAssignment = (event) => {
+    this.setState({assignmentID: event.currentTarget.id});
   }
 
   renderStudents= () => {
@@ -68,11 +75,11 @@ class TeacherGradeBook extends Component{
   }
 
   setStudents = (studentsArr) => {
-    this.setState({students: studentsArr})
+    this.setState({students: studentsArr, addExistingStudent: true})
   }
 
   resetStudents = () => {
-    this.setState({students: []})
+    this.setState({students: [], addExistingStudent: false})
   }
 
   render(){
@@ -119,11 +126,10 @@ class TeacherGradeBook extends Component{
             :
             null
           }
-          {this.state.students.length > 0 ?
+          {this.state.students.length > 0 && this.state.addExistingStudent ?
             <ListOfExistingStudents resetStudents={this.resetStudents} students={this.state.students}/>
             :
-            null
-            //FIXME: STUDENTS CANNOT BE 0
+            <NoStudentsAvailable resetStudents={this.resetStudents} addExistingStudent={this.state.addExistingStudent}/>
           }
       </Container>
     )

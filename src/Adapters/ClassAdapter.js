@@ -25,6 +25,17 @@ class ClassAdapter{
     .then(resp => resp.json())
   }
 
+  static deleteAssignments(id){
+    return fetch(`${API}/classrooms/${id}/assignments`, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      }
+    })
+    .then(resp => resp.json())
+  }
+
   static addStudent(id, studentsArr){
     return fetch(`${API}/classrooms/${id}/students`, {
       method: "POST",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Header, Form, Segment, Icon} from 'semantic-ui-react'
+import {Modal, Header, Form, Segment} from 'semantic-ui-react'
 import StudentAdapter from '../Adapters/StudentAdapter'
 
 import {initializeStudent} from '../Redux/ActionCreators'
