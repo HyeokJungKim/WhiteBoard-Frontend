@@ -14,5 +14,10 @@
 
 .hover:hover{
   cursor: pointer;
-  color: blue;
+  background-color:#e0e1e2;
+}
+
+.ui.table.hover th:hover, .ui.table th.hover:hover {
+  cursor: pointer;
+  background-color:#e0e1e2;
 }

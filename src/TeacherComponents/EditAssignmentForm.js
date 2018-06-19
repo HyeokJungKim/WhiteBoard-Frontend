@@ -19,7 +19,6 @@ class EditAssignmentForm extends Component{
   componentDidMount = () => {
     AssignmentAdapter.getAssignment(this.props.assignmentID)
     .then(resp => {
-      console.log(resp)
       if(resp.pdf){
         const pdfArray = resp.pdf.split("/")
           this.setState({hasPDF: true, description: resp.description, pdfName: pdfArray[pdfArray.length -1], pdfLink: resp.pdf})
@@ -127,13 +126,13 @@ class EditAssignmentForm extends Component{
 
             <Segment basic>
               <Button.Group>
-                <Button onClick={this.handleEdit}>Edit Assignment</Button>
+                <Button basic color="grey" onClick={this.handleEdit}>Edit Assignment</Button>
                 {this.state.hasPDF ?
-                  <Button onClick={this.removePDF} color="orange">Remove PDF</Button>
+                  <Button onClick={this.removePDF} basic color='blue'>Remove PDF</Button>
                   :
                   null
                 }
-                <Button color="red" onClick={this.handleDelete}>Delete Assignment</Button>
+                <Button basic color="red" onClick={this.handleDelete}>Delete Assignment</Button>
               </Button.Group>
             </Segment>
 

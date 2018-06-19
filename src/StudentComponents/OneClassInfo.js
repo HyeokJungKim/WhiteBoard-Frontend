@@ -32,7 +32,7 @@ class OneClassInfo extends Component{
       } else if(grade > 65 && grade < 85){
         return 'rgba(255,255,0,0.6)'
       } else{
-        return 'rgba(0,0,255,0.6)'
+        return 'rgba(71,183,71,0.6)'
       }
     })
     if(display == "bar"){

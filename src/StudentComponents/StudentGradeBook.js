@@ -30,7 +30,7 @@ class StudentGradeBook extends Component{
         if(assignment.pdf){
           return(
             <Table.Row key={assignment.id}>
-              <Table.Cell>{assignment.description}<a href={assignment.pdf} target="_blank"><Icon name="download"/></a></Table.Cell>
+              <Table.Cell>{assignment.description}<a href={assignment.pdf} target="_blank"> <Icon name="download"/></a></Table.Cell>
               {studentGrades}
             </Table.Row>
           )
