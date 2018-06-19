@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Icon} from 'semantic-ui-react'
+import {Container, Table, Icon, Button} from 'semantic-ui-react'
 import OneStudentInfo from './OneStudentInfo'
 
 class TeacherInformationForStudent extends Component{
   state={
-    studentToDisplay: null
+    studentToDisplay: null,
+    display: "bar"
   }
 
   renderClassName = () => {
@@ -58,6 +59,10 @@ class TeacherInformationForStudent extends Component{
     this.setState({studentToDisplay: event.target.id})
   }
 
+  handleClick = (event) => {
+    this.setState({display: event.currentTarget.name})
+  }
+
   close = () => {
     this.setState({studentToDisplay: null})
   }
@@ -77,7 +82,13 @@ class TeacherInformationForStudent extends Component{
           {students}
         </Table>
         {this.state.studentToDisplay ?
-          <OneStudentInfo close={this.close} studentToDisplay={this.state.studentToDisplay}/>
+          <div>
+            <OneStudentInfo display={this.state.display} close={this.close} studentToDisplay={this.state.studentToDisplay}/>
+              <Button.Group floated="right">
+                <Button onClick={this.handleClick} name="bar" icon> <Icon name='chart bar' /> </Button>
+                <Button onClick={this.handleClick} name="line" icon> <Icon name='line graph' /> </Button>
+              </Button.Group>
+          </div>
         :
           null
         }
