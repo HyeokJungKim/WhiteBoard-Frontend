@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Button, Icon} from 'semantic-ui-react'
+import {Container, Table, Button, Icon, Header, Segment} from 'semantic-ui-react'
 import OneClassInfo from './OneClassInfo'
 
 class StudentGradeBook extends Component{
   state={
-    display:"none"
+    display:"none",
   }
 
   validDisplay = () => {
@@ -16,15 +16,19 @@ class StudentGradeBook extends Component{
   renderAssignments = () => {
     const {displayedClassroom} = this.props
     if(this.validDisplay() && displayedClassroom.assignments.length > 0){
+      let gradeSum = 0
+      let counter = 0
       const assignmentIds = displayedClassroom.assignments.map(assignment => {
         return assignment.id
       })
 
-      return displayedClassroom.assignments.map(assignment => {
+      const gradesToDisplay = displayedClassroom.assignments.map(assignment => {
         let filteredGrades = assignment.grades.filter(grade => {
           return grade.student_id === parseInt(localStorage.getItem("id")) && assignmentIds.includes(grade.assignment_id)
         })
         let studentGrades = filteredGrades.map(grade => {
+          gradeSum += grade.grade
+          counter += 1
           return <Table.Cell textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
         })
         if(assignment.pdf){
@@ -43,20 +47,31 @@ class StudentGradeBook extends Component{
           )
         }
       })
-
+      return([gradesToDisplay, Math.round(gradeSum/counter * 100)/100])
     } else{
-      return(
-        <Table.Row>
-          <Table.Cell textAlign="center">You don't have any assignments for this class!</Table.Cell>
-        </Table.Row>
+      return([<Table.Row>
+        <Table.Cell textAlign="center">You don't have any assignments for this class!</Table.Cell>
+      </Table.Row>, 0]
+
       )
     }
   }
 
   renderClassName = () => {
     const {displayedClassroom} = this.props
+    const teacher = displayedClassroom.teacher
     if(this.validDisplay()){
-      return <h1>{displayedClassroom.name}</h1>
+      return (
+        <Segment basic>
+          <Segment floated='left' basic>
+            <h1>{displayedClassroom.name}</h1>
+          </Segment>
+          <Header as='h4' floated='right'>
+            {`Taught by: ${teacher.firstName} ${teacher.lastName}`}
+          </Header>
+        </Segment>
+      )
+
     }
   }
 
@@ -65,7 +80,10 @@ class StudentGradeBook extends Component{
   }
 
   render(){
-    let assignments = this.renderAssignments()
+    let assignmentAndAverage = this.renderAssignments()
+    console.log(assignmentAndAverage);
+    let average = assignmentAndAverage[1]
+    let assignments = assignmentAndAverage[0]
     let className = this.renderClassName()
     return(
       <Container>
@@ -73,7 +91,7 @@ class StudentGradeBook extends Component{
         <Table fixed definition compact>
           <Table.Header>
             <Table.HeaderCell />
-            <Table.HeaderCell textAlign="center" >Grades</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center" >{`Average: ${average}`}</Table.HeaderCell>
           </Table.Header>
           <Table.Body>
               {assignments}

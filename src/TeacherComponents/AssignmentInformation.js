@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Grid, Divider} from 'semantic-ui-react'
+import {Container, Table, Divider} from 'semantic-ui-react'
 import ClassAdapter from '../Adapters/ClassAdapter'
 
 class AssignmentInformation extends Component{
@@ -26,10 +26,8 @@ class AssignmentInformation extends Component{
       })
     }
   }
-
-
+  
   renderAssignments = () => {
-    const {displayedClassroom} = this.props
     if(this.props.validDisplay() && this.state.assignments.length > 0){
       return this.state.assignments.map(assignment =>{
         let range1 = 0
