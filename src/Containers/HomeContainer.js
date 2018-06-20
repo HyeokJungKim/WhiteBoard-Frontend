@@ -50,6 +50,12 @@ class HomeContainer extends Component{
     this.props.changeDisplayedClassroom(classToDisplay)
   }
 
+  changeAssignmentDisplay = (id) => {
+    this.setState({display: "Assignments"})
+    let classToDisplay = this.props.classrooms.find(classroom => classroom.id == id)
+    this.props.changeDisplayedClassroom(classToDisplay)
+  }
+
   renderForm = () => {
     this.setState({addClassForm: true})
   }
@@ -67,7 +73,7 @@ class HomeContainer extends Component{
             <Grid.Row>
               <Grid.Column width={4}>
                 {this.props.isTeacher ?
-                  <TeacherSidebar renderForm={this.renderForm} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
+                  <TeacherSidebar renderForm={this.renderForm} changeAssignmentDisplay={this.changeAssignmentDisplay} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                   :
                   <StudentSidebar changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                 }

@@ -38,6 +38,17 @@ class ClassAdapter{
     .then(resp => resp.json())
   }
 
+  static getGrades(id){
+    return fetch(`${API}/classrooms/${id}/assignments`, {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": 'application/json',
+      }
+    })
+    .then(resp => resp.json())
+  }
+
 }
 
 export default ClassAdapter

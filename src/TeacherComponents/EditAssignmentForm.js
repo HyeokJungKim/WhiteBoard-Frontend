@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Header, Form, Segment, Icon, Button, Label} from 'semantic-ui-react'
+import {Modal, Header, Form, Segment, Icon, Button} from 'semantic-ui-react'
 import AssignmentAdapter from '../Adapters/AssignmentAdapter'
 import {updateClassroom, changeDisplayedClassroom} from '../Redux/ActionCreators'
 import {connect} from 'react-redux'

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Select, Button, Divider, Dropdown} from 'semantic-ui-react'
+import {Form, Button, Divider, Dropdown} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import SchoolAdapter from '../Adapters/SchoolAdapter'
 import {connect} from 'react-redux'

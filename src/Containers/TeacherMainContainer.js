@@ -4,6 +4,8 @@ import {Container} from 'semantic-ui-react'
 
 import TeacherGradeBook from '../TeacherComponents/TeacherGradeBook.js'
 import CreateClassForm from '../TeacherComponents/CreateClassForm'
+import AssignmentInformation from '../TeacherComponents/AssignmentInformation'
+
 import TeacherInformationForStudent from '../TeacherComponents/TeacherInformationForStudent.js'
 
 class TeacherMainContainer extends Component{
@@ -19,6 +21,8 @@ class TeacherMainContainer extends Component{
         return <TeacherGradeBook validDisplay={this.validDisplay}/>
       case "Information":
         return <TeacherInformationForStudent validDisplay={this.validDisplay}/>
+      case "Assignments":
+        return <AssignmentInformation validDisplay={this.validDisplay}/>
       default:
         return <TeacherGradeBook validDisplay={this.validDisplay}/>
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {Form, Button, Divider, Radio, Select} from 'semantic-ui-react'
+import {Divider, Radio} from 'semantic-ui-react'
 import TeacherRegistrationForm from'./TeacherRegistrationForm'
 import SchoolRegistrationForm from './SchoolRegistrationForm'
 class RegistrationForm extends Component{

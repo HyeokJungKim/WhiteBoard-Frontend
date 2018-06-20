@@ -25,18 +25,25 @@ class TeacherSidebar extends Component{
     this.props.changeStudentInfoDisplay(event.target.id)
   }
 
+  changeAssignmentDisplay = (event) => {
+    this.props.changeAssignmentDisplay(event.target.id)
+  }
+
   render(){
     const { activeIndex } = this.state
     const classNamesForGrades = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
 
     const classNamesForStudents = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id} ><List.Content onClick={this.changeStudentInfoDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+
+    const classNamesForAssignments = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id} ><List.Content onClick={this.changeAssignmentDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+
     return (
       <div>
         <Accordion attached="bottom" fluid styled>
 
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Classes
+            Grades
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <List className="list">
@@ -47,7 +54,7 @@ class TeacherSidebar extends Component{
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Student Information
+            Students
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
             <List className="list">
@@ -57,10 +64,10 @@ class TeacherSidebar extends Component{
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Schedule
+            Assignments
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 2}>
-            {/* FILL */}
+            {classNamesForAssignments}
           </Accordion.Content>
         </Accordion>
       </div>
