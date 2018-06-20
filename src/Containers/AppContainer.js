@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Container,Grid, Image} from 'semantic-ui-react'
+import {Segment, Grid, Image} from 'semantic-ui-react'
 import Header from '../Components/Header'
 import LoginRegistrationForm from '../Components/LoginRegistrationForm'
 import LoggedIn from '../Components/LoggedIn.js'
@@ -10,11 +10,11 @@ class AppContainer extends Component{
       <div>
         <Header {...this.props}/>
 
-        <Container>
+        <Segment basic>
           <Grid>
             <Grid.Row>
               <Grid.Column width={9}>
-                <Image src="http://worldartsme.com/images/black-and-white-school-clipart-1.jpg" fluid centered></Image>
+                <Image src="http://worldartsme.com/images/black-and-white-school-clipart-1.jpg" centered></Image>
               </Grid.Column>
 
               <Grid.Column width={7}>
@@ -26,7 +26,7 @@ class AppContainer extends Component{
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Container>
+        </Segment>
       </div>
     )
   }

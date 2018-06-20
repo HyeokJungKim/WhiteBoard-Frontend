@@ -30,7 +30,7 @@ class TeacherMainContainer extends Component{
 
   render(){
     return(
-      <Container>
+      <Container fluid>
         {this.whatToDisplay()}
         {this.props.addClassForm ?
           <CreateClassForm addClassForm={this.props.addClassForm} closeForm={this.props.closeForm}/>

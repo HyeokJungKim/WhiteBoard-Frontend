@@ -26,6 +26,12 @@ class TeacherInformationForStudent extends Component{
         return assignment.id
       })
 
+      displayedClassroom.students.sort((a,b) => {
+        if(a.firstName < b.firstName) return -1
+        if(a.firstName > b.firstName) return 1
+        return 0
+      })
+      
       return displayedClassroom.students.map(student => {
           let average = 0
           let counter = 0

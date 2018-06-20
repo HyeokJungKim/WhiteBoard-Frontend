@@ -9,7 +9,7 @@ class StudentMainContainer extends Component{
 
   render(){
     return(
-      <Container>
+      <Container fluid>
           <StudentGradeBook/>
       </Container>
 

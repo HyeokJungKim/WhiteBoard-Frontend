@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, List, Button } from 'semantic-ui-react'
+import { Accordion, Icon, List, Button, Segment } from 'semantic-ui-react'
 
 class TeacherSidebar extends Component{
   state = {
@@ -46,10 +46,12 @@ class TeacherSidebar extends Component{
             Grades
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
-            <List className="list">
-              {classNamesForGrades}
-              <List.Item><Button onClick={this.props.renderForm} content="Add New Class"/></List.Item>
-            </List>
+            <Segment basic>
+              <List className="list">
+                {classNamesForGrades}
+                <List.Item><Button onClick={this.props.renderForm} content="Add New Class"/></List.Item>
+              </List>
+            </Segment>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
@@ -57,9 +59,11 @@ class TeacherSidebar extends Component{
             Students
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
-            <List className="list">
-              {classNamesForStudents}
-            </List>
+            <Segment basic>
+              <List className="list">
+                {classNamesForStudents}
+              </List>
+            </Segment>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>
@@ -67,7 +71,11 @@ class TeacherSidebar extends Component{
             Assignments
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 2}>
-            {classNamesForAssignments}
+            <Segment basic>
+              <List className="list">
+                {classNamesForAssignments}
+              </List>
+            </Segment>
           </Accordion.Content>
         </Accordion>
       </div>

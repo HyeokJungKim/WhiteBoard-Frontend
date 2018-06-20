@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Container,Grid} from 'semantic-ui-react'
+import {Grid, Segment} from 'semantic-ui-react'
 
 import Header from '../Components/Header'
 
@@ -68,7 +68,7 @@ class HomeContainer extends Component{
     return(
       <div>
         <Header {...this.props}></Header>
-        <Container>
+        <Segment basic>
           <Grid>
             <Grid.Row>
               <Grid.Column width={4}>
@@ -88,7 +88,7 @@ class HomeContainer extends Component{
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Container>
+        </Segment>
       </div>
     )
   }

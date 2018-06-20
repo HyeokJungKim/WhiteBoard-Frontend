@@ -26,7 +26,7 @@ class AssignmentInformation extends Component{
       })
     }
   }
-  
+
   renderAssignments = () => {
     if(this.props.validDisplay() && this.state.assignments.length > 0){
       return this.state.assignments.map(assignment =>{
@@ -74,7 +74,7 @@ class AssignmentInformation extends Component{
           <Table.Header>
             <Table.HeaderCell/>
             <Table.HeaderCell textAlign="center">Less than 65</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">65-85</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">65 to 85</Table.HeaderCell>
             <Table.HeaderCell textAlign="center">Greater than 85</Table.HeaderCell>
           </Table.Header>
           <Table.Body>
