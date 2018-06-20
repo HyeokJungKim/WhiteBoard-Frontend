@@ -23,27 +23,27 @@ class StudentSidebar extends Component{
 
   render(){
     const { activeIndex } = this.state
-    const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
+    const classNames = this.props.classrooms.map(classroom => <List.Item key={classroom.id} ><List.Content className="hover" onClick={this.changeClassDisplay} id={classroom.id}>{this.titleize(classroom.name)}</List.Content></List.Item>)
     return (
       <Sticky>
         <Accordion attached="bottom" fluid styled>
 
           <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Classes
+            Grades
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <List>
-              FILL HERE
+              {classNames}
             </List>
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleAccordian}>
             <Icon name='dropdown' />
-            Grades
+            Classes
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 1}>
-            {classNames}
+            HMMM
           </Accordion.Content>
 
           <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleAccordian}>

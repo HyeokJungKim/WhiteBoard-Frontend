@@ -16,7 +16,11 @@ class HeaderBar extends Component{
   }
 
   home = () => {
-    this.props.history.push('/')
+    if(localStorage.getItem('token')){
+      this.props.history.push('/home')
+    }else{
+      this.props.history.push('/')
+    }
   }
 
   render(){
