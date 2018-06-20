@@ -30,7 +30,7 @@ class SchoolRegistrationForm extends Component{
       SchoolAdapter.createSchool(schoolInfo)
       .then(resp =>{
         if(resp.errors){
-          this.setState({errors: resp.errors})
+          this.setState({errors: resp.errors, isDisabled: false})
         }else{
           this.setState({errors: ["School successfully created!"]})
         }

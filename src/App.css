@@ -17,6 +17,16 @@
   background-color:#e0e1e2;
 }
 
+.ui.header:first-child.header{
+  font-family: 'Dosis', sans-serif;
+  margin-left: 2rem;
+}
+
+.ui.header:first-child.header:hover{
+  color:#e0e1e2;
+  cursor: pointer;
+}
+
 .ui.table.hover th:hover, .ui.table th.hover:hover {
   cursor: pointer;
   background-color:#e0e1e2;

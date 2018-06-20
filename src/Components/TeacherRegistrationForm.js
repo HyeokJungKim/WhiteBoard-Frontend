@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Select, Button, Divider} from 'semantic-ui-react'
+import {Form, Select, Button, Divider, Dropdown} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import SchoolAdapter from '../Adapters/SchoolAdapter'
 import {connect} from 'react-redux'
@@ -59,6 +59,7 @@ class TeacherRegistrationForm extends Component{
     SchoolAdapter.validateSchool(schoolID, schoolInfo)
     .then(resp => {
       if(resp.valid){
+        this.setState({errors:[]})
         this.setState({validSchool: resp.valid, isDisabled: true})
         this.props.showRadio()
       } else{
@@ -80,7 +81,7 @@ class TeacherRegistrationForm extends Component{
       TeacherAdapter.register(userInfo)
       .then(json => {
         if(json.errors){
-          this.setState({errors:json.errors})
+          this.setState({errors:json.errors, isDisabled: false})
         } else {
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
@@ -119,7 +120,7 @@ class TeacherRegistrationForm extends Component{
            </div>
             :
             <div>
-              <Form.Field control={Select} label="School" onChange={this.handleSelect} placeholder="Select your school" options={this.state.schools}/>
+              <Dropdown label="School" onChange={this.handleSelect} fluid search selection options={this.state.schools}/>
               <Form.Input type="password" onChange={this.handleChange} label="School Password" name="schoolPassword" value={this.state.schoolPassword} placeholder="School Password"/>
             </div>
          }

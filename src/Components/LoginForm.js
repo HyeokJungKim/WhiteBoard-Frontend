@@ -46,8 +46,9 @@ class LoginForm extends Component{
       TeacherAdapter.login(userInfo)
       .then(json => {
         if(json.error){
-          this.setState({error:json.error})
+          this.setState({error:json.error, isDisabled: false})
         } else {
+          this.setState({errors:""})
           this.setLocalStorage(json)
           TeacherAdapter.getClasses()
           .then(classes => {

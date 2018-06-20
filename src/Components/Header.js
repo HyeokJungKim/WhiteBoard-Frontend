@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {Menu, Button} from 'semantic-ui-react'
+import {Menu, Button, Header, Segment} from 'semantic-ui-react'
 
-class Header extends Component{
+class HeaderBar extends Component{
   registration = () => {
     this.props.history.push('/register')
   }
@@ -15,9 +15,18 @@ class Header extends Component{
     localStorage.clear()
   }
 
+  home = () => {
+    this.props.history.push('/')
+  }
+
   render(){
     return(
       <Menu>
+        <Menu.Menu position="left">
+          <Segment basic>
+            <Header className="heading" as='h1' onClick={this.home}>White Board</Header>
+          </Segment>
+        </Menu.Menu>
         <Menu.Menu position='right'>
           <Menu.Item>
             {localStorage.getItem('token') ?
@@ -41,4 +50,4 @@ class Header extends Component{
     )
   }
 }
-export default Header
+export default HeaderBar
