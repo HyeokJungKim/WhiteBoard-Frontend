@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Segment} from 'semantic-ui-react'
+import { Segment} from 'semantic-ui-react'
 
 import TeacherGradeBook from '../TeacherComponents/TeacherGradeBook.js'
 import CreateClassForm from '../TeacherComponents/CreateClassForm'

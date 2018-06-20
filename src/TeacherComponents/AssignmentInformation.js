@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import {Container, Table, Divider} from 'semantic-ui-react'
 import ClassAdapter from '../Adapters/ClassAdapter'
+import AssignmentChart from './AssignmentChart'
 
 class AssignmentInformation extends Component{
   state={
-    assignments:[]
+    assignments:[],
+    displayAssignment: false,
+    assignment: {},
+    gradeData: []
   }
 
   componentDidMount = () => {
@@ -19,12 +23,19 @@ class AssignmentInformation extends Component{
   }
 
   changeState = (displayedClassroom) => {
+    this.setState({assignment: {}, displayAssignment: false})
     if(this.props.validDisplay()){
       ClassAdapter.getGrades(displayedClassroom.id)
       .then(resp => {
         this.setState({assignments: resp.assignments})
       })
     }
+  }
+
+  onClick = (event) => {
+    const assignments = [...this.state.assignments]
+    const assignment = assignments.find(assignment => assignment.id === parseInt(event.currentTarget.id))
+    this.setState({assignment: assignment, displayAssignment: true})
   }
 
   renderAssignments = () => {
@@ -43,9 +54,11 @@ class AssignmentInformation extends Component{
             range3 += 1
           }
         })
+
+
         return(
           <Table.Row key={assignment.id}>
-            <Table.Cell>{assignment.description}</Table.Cell>
+            <Table.Cell id={assignment.id} className="hover" onClick={this.onClick}>{assignment.description}</Table.Cell>
             <Table.Cell textAlign="center">{range1}</Table.Cell>
             <Table.Cell textAlign="center">{range2}</Table.Cell>
             <Table.Cell textAlign="center">{range3}</Table.Cell>
@@ -62,6 +75,10 @@ class AssignmentInformation extends Component{
     if(this.props.validDisplay()){
       return <h1>{displayedClassroom.name}</h1>
     }
+  }
+
+  close = () => {
+    this.setState({assignment: {}, displayAssignment: false})
   }
 
   render(){
@@ -82,6 +99,11 @@ class AssignmentInformation extends Component{
           </Table.Body>
         </Table>
         <Divider hidden/>
+        {this.state.displayAssignment ?
+          <AssignmentChart close={this.close} assignment={this.state.assignment}/>
+          :
+          null
+        }
       </Container>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container, Table, Button, Icon, Header, Segment, Grid, Divider} from 'semantic-ui-react'
+import {Container, Table, Button, Icon, Segment, Grid, Divider} from 'semantic-ui-react'
 import OneClassInfo from './OneClassInfo'
 
 class StudentGradeBook extends Component{
