@@ -6,13 +6,19 @@ import OneStudentInfo from './OneStudentInfo'
 class TeacherInformationForStudent extends Component{
   state={
     studentToDisplay: null,
-    display: "bar"
+    display: "bar",
+    showPieChart: false,
   }
 
   renderClassName = () => {
     const {displayedClassroom} = this.props
     if(this.props.validDisplay()){
-      return <h1>{displayedClassroom.name}</h1>
+      return (
+        <div>
+          <h1>{displayedClassroom.name}</h1>
+          <Button icon="chart pie" floated="right"/>
+        </div>
+      )
     }
   }
 

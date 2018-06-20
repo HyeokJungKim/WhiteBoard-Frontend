@@ -23,16 +23,16 @@ class Header extends Component{
             {localStorage.getItem('token') ?
               <p>Logged in as: {`${localStorage.getItem('name')}`}</p>
               :
-              <Button primary onClick={this.registration}> Register </Button>
+              <Button basic color="blue" onClick={this.registration}> Register </Button>
             }
 
 
           </Menu.Item>
           <Menu.Item>
             {localStorage.getItem('token') ?
-              <Button primary onClick={this.logout}> Logout </Button>
+              <Button basic color="blue" onClick={this.logout}> Logout </Button>
               :
-              <Button primary onClick={this.login}> Login </Button>
+              <Button basic color="blue" onClick={this.login}> Login </Button>
             }
 
           </Menu.Item>

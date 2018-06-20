@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 
 import AppContainer from './Containers/AppContainer'
+import LoginContainer from './Containers/LoginContainer'
+import RegistrationContainer from './Containers/RegistrationContainer'
+
 import HomeContainer from './Containers/HomeContainer'
 import CreateClassForm from './TeacherComponents/CreateClassForm'
 
@@ -24,14 +27,17 @@ class App extends Component {
         <Route path='/' exact render={(props) => <AppContainer {...props}/>}>
         </Route>
 
-        <Route path='/register'>
-          <p>REGISTER PATH IN APP.JS</p>
+        <Route path='/register' render={(props) => <RegistrationContainer {...props}/>}>
+
         </Route>
 
 
-        <Route path='/login'>
-          <p>LOGIN PATH IN APP.JS</p>
-        </Route>
+        <Route path='/login' render={(props) => <LoginContainer {...props}/>}></Route>
+
+        {localStorage.getItem('token') ?
+          <Route path='/home' render={(props) => <HomeContainer {...props}/> }></Route>
+            :
+          <Redirect to='/'/> }
 
         {localStorage.getItem('token') ?
           <Route path='/create_first_class' render={(props) => <CreateClassForm {...props} firstTime={this.state.firstTime} closeFirstTime={this.close} addClassForm={this.state.addClassForm}/>}/>
@@ -44,11 +50,7 @@ class App extends Component {
             :
           <Redirect to='/'/>
         }
-        
-        {localStorage.getItem('token') ?
-          <Route path='/home' render={(props) => <HomeContainer {...props}/> }></Route>
-            :
-          <Redirect to='/'/> }
+
       </Switch>
     )
   }
