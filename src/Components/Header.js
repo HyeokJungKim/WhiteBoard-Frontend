@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Menu, Button, Header, Segment, Sticky} from 'semantic-ui-react'
+import {Menu, Button, Header, Segment} from 'semantic-ui-react'
 
 class HeaderBar extends Component{
   registration = () => {
