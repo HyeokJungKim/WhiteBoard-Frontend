@@ -13,7 +13,7 @@ class TeacherRegistrationForm extends Component{
     schoolID: "",
     validSchool: false,
 
-    firstName:"",
+    firstName:"Ms.",
     lastName:"",
     username:"",
     password:"",
@@ -51,7 +51,16 @@ class TeacherRegistrationForm extends Component{
     this.setState({schoolID: event.currentTarget.id})
   }
 
-
+  createSurname = () => {
+    return (
+      [
+        {id: 1, value: "Ms.", text: "Ms."},
+        {id: 2, value: "Mrs.", text: "Mrs."},
+        {id: 3, value: "Mr.", text: "Mr."},
+        {id: 4, value: "Dr.", text: "Dr."},
+      ]
+    )
+  }
 
   setSchool = () => {
     const {schoolPassword, schoolID} = this.state
@@ -75,6 +84,7 @@ class TeacherRegistrationForm extends Component{
   }
 
   setTeacher = () => {
+    debugger
     const {firstName, lastName, username, password, passwordConfirmation, schoolID} = this.state
     if(password === passwordConfirmation){
       const userInfo = {firstName, lastName, username, password, schoolID}
@@ -103,6 +113,10 @@ class TeacherRegistrationForm extends Component{
     }
   }
 
+  handleSurname = (event) => {
+    this.setState({firstName: event.currentTarget.innerText})
+  }
+
  render(){
    const errors = this.state.errors.map(error => <h4>{error}</h4>)
    return(
@@ -112,7 +126,11 @@ class TeacherRegistrationForm extends Component{
          {this.state.validSchool ?
            <div>
              <h2>Enter Your Information</h2>
-              <Form.Input onChange={this.handleChange} value={this.state.firstName} label='First Name' name="firstName" placeholder="First Name" />
+                <div className="field">
+                  <label className="ui form field">Surname</label>
+                  <Dropdown className="dropdown" onChange={this.handleSurname} value={this.state.firstName} compact selection options={this.createSurname()}/>
+                </div>
+
               <Form.Input onChange={this.handleChange} value={this.state.lastName} label='Last Name' name="lastName" placeholder="Last Name" />
               <Form.Input onChange={this.handleChange} value={this.state.username} label="Username" name="username" placeholder="Username" />
               <Form.Input onChange={this.handleChange} value={this.state.password} type="password" label="Password" name="password" placeholder="Password" />
@@ -120,7 +138,10 @@ class TeacherRegistrationForm extends Component{
            </div>
             :
             <div>
-              <Dropdown label="School" onChange={this.handleSelect} fluid search selection options={this.state.schools}/>
+              <div className="field">
+                <label className="ui form field">Choose a School</label>
+                <Dropdown className="dropdown" onChange={this.handleSelect} fluid search selection options={this.state.schools}/>
+              </div>
               <Form.Input type="password" onChange={this.handleChange} label="School Password" name="schoolPassword" value={this.state.schoolPassword} placeholder="School Password"/>
             </div>
          }

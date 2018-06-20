@@ -27,6 +27,18 @@
   cursor: pointer;
 }
 
+.ui.form .field {
+    color: rgba(0,0,0,.87);
+    font-size: .92857143em;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.ui.form .field .dropdown{
+  font-weight: 400;
+  color: rgba(0,0,0,1)
+}
+
 .ui.table.hover th:hover, .ui.table th.hover:hover {
   cursor: pointer;
   background-color:#e0e1e2;

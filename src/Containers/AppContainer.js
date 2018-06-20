@@ -17,7 +17,11 @@ class AppContainer extends Component{
               </Grid.Column>
 
               <Grid.Column width={7}>
-                <LoginRegistrationForm {...this.props}/>
+                {localStorage.getItem('token') ?
+                  <p>Logged in</p>
+                  :
+                  <LoginRegistrationForm {...this.props}/>
+                }
               </Grid.Column>
             </Grid.Row>
           </Grid>

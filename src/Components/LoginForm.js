@@ -86,10 +86,10 @@ class LoginForm extends Component{
           <Form.Input onChange={this.handleChange} value={this.state.username} label="Username" name="username" placeholder="Username" />
           <Form.Input onChange={this.handleChange} value={this.state.password} type="password" label="Password" name="password" placeholder="Password" />
           <Form.Field>
-            <Radio label="I am a teacher" value="teacher" name="forWhom" checked={this.state.forWhom === "teacher"} onChange={this.handleRadio}/>
+            <Radio className="dropwdown" label="I am a teacher" value="teacher" name="forWhom" checked={this.state.forWhom === "teacher"} onChange={this.handleRadio}/>
           </Form.Field>
           <Form.Field>
-            <Radio label="I am a student" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
+            <Radio className="dropwdown" label="I am a student" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
           </Form.Field>
         </Form>
         <Divider hidden/>
