@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Container} from 'semantic-ui-react'
+import {Container, Segment} from 'semantic-ui-react'
 
 import TeacherGradeBook from '../TeacherComponents/TeacherGradeBook.js'
 import CreateClassForm from '../TeacherComponents/CreateClassForm'
@@ -30,14 +30,14 @@ class TeacherMainContainer extends Component{
 
   render(){
     return(
-      <Container fluid>
+      <Segment basic>
         {this.whatToDisplay()}
         {this.props.addClassForm ?
           <CreateClassForm addClassForm={this.props.addClassForm} closeForm={this.props.closeForm}/>
           :
           null
         }
-      </Container>
+      </Segment>
 
     )
   }

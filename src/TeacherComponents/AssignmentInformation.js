@@ -68,7 +68,7 @@ class AssignmentInformation extends Component{
     const name = this.renderClassName()
     const assignments = this.renderAssignments()
     return(
-      <Container className="gradebook">
+      <Container fluid className="gradebook">
         {name}
         <Table fixed definition compact >
           <Table.Header>

@@ -31,9 +31,9 @@ class StudentGradeBook extends Component{
           gradeSum += grade.grade
           counter += 1
           if(grade.grade <= 65){
-            return <Table.Cell negative collapsing textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
+            return <Table.Cell negative textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
           }else {
-            return <Table.Cell collapsing textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
+            return <Table.Cell  textAlign="center" key={grade.id} id={grade.id}>{grade.grade}</Table.Cell>
           }
 
         })
@@ -41,14 +41,14 @@ class StudentGradeBook extends Component{
         if(assignment.pdf){
           return(
             <Table.Row key={assignment.id}>
-              <Table.Cell collapsing>{assignment.description}<a href={assignment.pdf} target="_blank"> <Icon name="download"/></a></Table.Cell>
+              <Table.Cell >{assignment.description}<a href={assignment.pdf} target="_blank"> <Icon name="download"/></a></Table.Cell>
               {studentGrades}
             </Table.Row>
           )
         } else {
           return(
             <Table.Row key={assignment.id}>
-              <Table.Cell collapsing>{assignment.description}</Table.Cell>
+              <Table.Cell>{assignment.description}</Table.Cell>
               {studentGrades}
             </Table.Row>
           )
@@ -58,7 +58,7 @@ class StudentGradeBook extends Component{
       return([gradesToDisplay, Math.round(gradeSum/counter * 100)/100])
     } else{
       return([<Table.Row>
-        <Table.Cell collapsing>No assignments for this class!</Table.Cell>
+        <Table.Cell>No assignments for this class!</Table.Cell>
       </Table.Row>, 0]
 
       )
@@ -73,7 +73,7 @@ class StudentGradeBook extends Component{
     const teacher = displayedClassroom.teacher
     if(this.validDisplay()){
       return (
-            <Container basic>
+            <Container textAlign="center" basic>
               <h1>{displayedClassroom.name}</h1>
               <h4>{`Taught by: ${teacher.firstName} ${teacher.lastName}`}</h4>
             </Container>
@@ -92,25 +92,27 @@ class StudentGradeBook extends Component{
     let average = assignmentAndAverage[1]
     let className = this.renderClassName()
     return(
-      <Container>
+      <Segment basic>
         <Grid>
         <Grid.Row>
-          <Grid.Column width={6}>
+          <Grid.Column width={5}>
             {className}
             <Divider hidden/>
-            <Button.Group floated="left">
-              <Button onClick={this.handleClick} name="bar" icon> <Icon name='chart bar' /> </Button>
-              <Button onClick={this.handleClick} name="line" icon> <Icon name='line graph' /> </Button>
-              <Button onClick={this.handleClick} name="none" icon> <Icon name='hide' /> </Button>
-            </Button.Group>
+            <Container textAlign="center">
+              <Button.Group>
+                <Button onClick={this.handleClick} name="bar" icon> <Icon name='chart bar' /> </Button>
+                <Button onClick={this.handleClick} name="line" icon> <Icon name='line graph' /> </Button>
+                <Button onClick={this.handleClick} name="none" icon> <Icon name='hide' /> </Button>
+              </Button.Group>
+            </Container>
 
           </Grid.Column>
 
-          <Grid.Column width={6}>
-            <Table fixed definition compact collapsing>
+          <Grid.Column width={8}>
+            <Table fixed definition compact>
               <Table.Header>
                 <Table.HeaderCell />
-                <Table.HeaderCell collapsing textAlign="center" >{`Average: ${average}`}</Table.HeaderCell>
+                <Table.HeaderCell textAlign="center" >{`Average: ${average}`}</Table.HeaderCell>
               </Table.Header>
               <Table.Body>
                   {assignments}
@@ -120,12 +122,13 @@ class StudentGradeBook extends Component{
         </Grid.Row>
         </Grid>
         <Divider hidden/>
-        <OneClassInfo display={this.state.display} validDisplay={this.validDisplay}/>
 
+          <Container>
+            <OneClassInfo display={this.state.display} validDisplay={this.validDisplay}/>
+          </Container>
 
+      </Segment>
 
-
-      </Container>
     )
   }
 }

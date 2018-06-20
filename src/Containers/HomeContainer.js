@@ -71,7 +71,7 @@ class HomeContainer extends Component{
         <Segment basic>
           <Grid>
             <Grid.Row>
-              <Grid.Column width={4}>
+              <Grid.Column width={3}>
                 {this.props.isTeacher ?
                   <TeacherSidebar renderForm={this.renderForm} changeAssignmentDisplay={this.changeAssignmentDisplay} changeStudentInfoDisplay={this.changeStudentInfoDisplay} changeClassDisplay={this.changeClassDisplay} {...this.props}/>
                   :
@@ -79,7 +79,7 @@ class HomeContainer extends Component{
                 }
               </Grid.Column>
 
-              <Grid.Column width={12}>
+              <Grid.Column width={13}>
                 {this.props.isTeacher ?
                   <TeacherMainContainer closeForm={this.closeForm} addClassForm={this.state.addClassForm} display={this.state.display}/>
                   :

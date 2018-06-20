@@ -43,3 +43,7 @@
   cursor: pointer;
   background-color:#e0e1e2;
 }
+
+ .ui.table td.negative.redhover:hover {
+  background-color:#e0e1e2 !important;
+}

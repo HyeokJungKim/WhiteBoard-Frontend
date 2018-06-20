@@ -31,7 +31,7 @@ class TeacherInformationForStudent extends Component{
         if(a.firstName > b.firstName) return 1
         return 0
       })
-      
+
       return displayedClassroom.students.map(student => {
           let average = 0
           let counter = 0
@@ -80,7 +80,7 @@ class TeacherInformationForStudent extends Component{
     const className = this.renderClassName()
     const students = this.renderStudents()
     return(
-      <Container>
+      <Container fluid>
         {className}
         <Table color={'blue'} fixed compact singleLine >
           <Table.Row>
@@ -93,7 +93,7 @@ class TeacherInformationForStudent extends Component{
         {this.state.studentToDisplay ?
           <div>
             <OneStudentInfo display={this.state.display} close={this.close} studentToDisplay={this.state.studentToDisplay}/>
-              <Button.Group floated="right">
+              <Button.Group floated="left">
                 <Button onClick={this.handleClick} name="bar" icon> <Icon name='chart bar' /> </Button>
                 <Button onClick={this.handleClick} name="line" icon> <Icon name='line graph' /> </Button>
               </Button.Group>

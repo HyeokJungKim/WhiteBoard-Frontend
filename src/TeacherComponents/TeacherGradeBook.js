@@ -24,7 +24,7 @@ class TeacherGradeBook extends Component{
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
       return displayedClassroom.assignments.map(assignment => {
-        return <Table.HeaderCell collapsing className="hover" id={assignment.id} onClick={this.editAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
+        return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.editAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
       return <Table.HeaderCell textAlign="center"> You don't have any assignments!</Table.HeaderCell>
@@ -54,14 +54,14 @@ class TeacherGradeBook extends Component{
         })
         let filteredGrades = grades.map(grade => {
           if(grade.grade <= 65){
-            return <Table.Cell collapsing negative className="hover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
+            return <Table.Cell negative className="hover redhover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
           } else{
-            return <Table.Cell collapsing className="hover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
+            return <Table.Cell className="hover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
           }
         })
         return (
           <Table.Row key={student.id}>
-            <Table.Cell collapsing >{`${student.firstName} ${student.lastName}`}</Table.Cell>
+            <Table.Cell collapsing>{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {filteredGrades}
           </Table.Row>
         )
@@ -103,7 +103,7 @@ class TeacherGradeBook extends Component{
     const students = this.renderStudents()
     const className = this.renderClassName()
     return(
-      <Container>
+      <Container fluid>
         {className}
         <Grid columns={3}>
           <Grid.Row>
@@ -123,9 +123,9 @@ class TeacherGradeBook extends Component{
           </Grid.Row>
         </Grid>
         <Divider hidden/>
-        <Container className="gradebook">
+        <Container fluid className="gradebook">
 
-          <Table fixed definition compact collapsing >
+          <Table fixed definition compact>
             <Table.Header>
               <Table.HeaderCell />
                 {assignments}
@@ -134,7 +134,7 @@ class TeacherGradeBook extends Component{
               {students}
             </Table.Body>
           </Table>
-          
+
           <Divider hidden/>
         </Container>
 
