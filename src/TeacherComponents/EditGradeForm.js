@@ -27,17 +27,22 @@ class EditGradeForm extends Component{
   }
 
   handleClick = (event) => {
-    const gradeData = {grade: this.state.grade}
-    GradeAdapter.editGrade(this.props.gradeID, gradeData)
-    .then(resp=>{
-      if(resp.errors){
-        this.setState({error: resp.errors})
-      } else{
-        this.props.closeEdit()
-        this.props.updateClassroom(resp)
-        this.props.changeDisplayedClassroom(resp)
-      }
-    })
+    if(this.state.grade <= 100 && this.state.grade >= 0){
+      const gradeData = {grade: this.state.grade}
+      GradeAdapter.editGrade(this.props.gradeID, gradeData)
+      .then(resp=>{
+        if(resp.errors){
+          this.setState({errors: resp.errors})
+        } else{
+          this.props.closeEdit()
+          this.props.updateClassroom(resp)
+          this.props.changeDisplayedClassroom(resp)
+        }
+      })
+    } else {
+      this.setState({errors: ["Grade must be between 0 and 100."]})
+    }
+
   }
 
   render(){
@@ -47,6 +52,8 @@ class EditGradeForm extends Component{
         <Segment basic>
           <Header floated="right"><Icon onClick={this.props.closeEdit} name="close"/></Header>
           <Header floated="left" icon="calculator" content="Edit Grade"/>
+        </Segment>
+        <Segment basic>
           {errors}
         </Segment>
         <Modal.Content>

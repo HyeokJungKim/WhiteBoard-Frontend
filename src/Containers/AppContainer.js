@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Container,Grid, Image} from 'semantic-ui-react'
 import Header from '../Components/Header'
 import LoginRegistrationForm from '../Components/LoginRegistrationForm'
+import LoggedIn from '../Components/LoggedIn.js'
 
 class AppContainer extends Component{
   render(){
@@ -18,7 +19,7 @@ class AppContainer extends Component{
 
               <Grid.Column width={7}>
                 {localStorage.getItem('token') ?
-                  <p>Logged in</p>
+                  <LoggedIn {...this.props}/>
                   :
                   <LoginRegistrationForm {...this.props}/>
                 }

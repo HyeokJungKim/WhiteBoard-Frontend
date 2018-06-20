@@ -14,10 +14,7 @@ class TeacherInformationForStudent extends Component{
     const {displayedClassroom} = this.props
     if(this.props.validDisplay()){
       return (
-        <div>
           <h1>{displayedClassroom.name}</h1>
-          <Button icon="chart pie" floated="right"/>
-        </div>
       )
     }
   }

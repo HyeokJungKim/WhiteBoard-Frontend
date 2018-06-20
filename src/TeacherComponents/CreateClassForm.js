@@ -57,7 +57,9 @@ class CreateClassForm extends Component{
           }
           <Header floated="left" icon="clipboard" content="Add New Class"></Header>
         </Segment>
-        {error}
+        <Segment basic>
+          {error}
+        </Segment>
         <Modal.Content>
           <Form>
             <Form.Input value={this.state.className} onChange={this.onChange} label="Class Name" name="className" placeholder="Class Name"/>

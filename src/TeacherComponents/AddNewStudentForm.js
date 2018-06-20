@@ -61,7 +61,9 @@ class AddNewStudentForm extends Component{
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             <Header floated="left" icon="book" content="Add New Student"></Header>
           </Segment>
-          {errors}
+          <Segment basic>
+            {errors}
+          </Segment>
           <Modal.Content>
           <Form>
             <Form.Group widths='equal'>

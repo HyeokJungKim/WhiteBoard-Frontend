@@ -116,7 +116,9 @@ class EditAssignmentForm extends Component{
           :
           null
         }
-        {error}
+        <Segment basic>
+          {error}
+        </Segment>
         <Modal.Content>
           <Form>
             <Form.TextArea value={this.state.description} onChange={this.onChange} label="Assignment Description" name="description" placeholder="Assignment Description"/>

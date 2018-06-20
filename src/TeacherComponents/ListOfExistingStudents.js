@@ -63,6 +63,8 @@ class ListOfExistingStudents extends Component{
         <Segment basic>
           <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
           <Header icon="book" content="Select A Student to Add"></Header>
+        </Segment>
+        <Segment basic>
           {error}
         </Segment>
         <Modal.Content>

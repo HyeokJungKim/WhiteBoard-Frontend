@@ -161,7 +161,7 @@ class OneStudentInfo extends Component{
           <Segment basic>
             <Header floated="right"><Icon onClick={this.close} name="close"/></Header>
             {this.whatToDisplay()}
-      </Segment>
+          </Segment>
       :
       null}
     </Container>
