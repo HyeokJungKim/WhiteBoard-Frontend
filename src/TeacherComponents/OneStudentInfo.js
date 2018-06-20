@@ -53,7 +53,7 @@ class OneStudentInfo extends Component{
         } else if(display == "line"){
           this.setState({chartInfo:
             {labels: assignments,
-              datasets: [{data: studentGrades, pointBackgroundColor: colors, borderColor: colors, fill: false}],
+              datasets: [{data: studentGrades, pointBackgroundColor: `rgba(130,60,200,0.6)`, borderColor: colors, fill: false}],
             },
             showChart: true
           })

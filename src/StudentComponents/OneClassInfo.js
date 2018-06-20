@@ -46,7 +46,7 @@ class OneClassInfo extends Component{
     }else {
       this.setState({chartInfo:
         {labels: assignmentDescription,
-          datasets: [{data: arr, pointBackgroundColor: colors, borderColor: colors, fill: false}],
+          datasets: [{data: arr, pointBackgroundColor: colors, borderColor: `rgba(130,60,200,0.6)`, fill: false}],
         }
       })
     }
