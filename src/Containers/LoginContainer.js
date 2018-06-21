@@ -11,7 +11,7 @@ class LoginContainer extends Component{
       <div>
       <Header {...this.props}></Header>
         <Container>
-          <LoginForm/>
+          <LoginForm {...this.props}/>
         </Container>
       </div>
     )

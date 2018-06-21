@@ -49,7 +49,7 @@ class RegistrationForm extends Component{
           {this.state.forWhom === "teacher" ?
             <TeacherRegistrationForm {...this.props} showRadio={this.showRadio}/>
               :
-            <SchoolRegistrationForm/>
+            <SchoolRegistrationForm {...this.props}/>
           }
         </div>
 

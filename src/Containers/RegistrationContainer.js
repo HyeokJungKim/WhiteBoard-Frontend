@@ -11,7 +11,7 @@ class RegistrationContainer extends Component{
       <div>
       <Header {...this.props}></Header>
         <Container>
-          <RegistrationForm/>
+          <RegistrationForm {...this.props}/>
         </Container>
       </div>
     )
