@@ -105,7 +105,6 @@ class OneClassInfo extends Component{
             }
           }
           data={this.state.chartInfo}/>
-
       default:
         return null
     }

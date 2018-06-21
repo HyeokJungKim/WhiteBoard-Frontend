@@ -12,7 +12,7 @@ class StudentSidebar extends Component{
   }
 
   render(){
-    const classNames = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id}><Segment id={classroom.id} onClick={this.changeClassDisplay} basic><List.Content id={classroom.id}>{this.titleize(classroom.name)}</List.Content></Segment></List.Item>)
+    const classNames = this.props.classrooms.map(classroom => <List.Item className="hover" key={classroom.id}><Segment id={classroom.id} onClick={this.changeClassDisplay} basic><List.Content id={classroom.id} >{this.titleize(classroom.name)}</List.Content></Segment></List.Item>)
     return (
       <Sticky>
         <Segment basic>

@@ -35,10 +35,12 @@ class TeacherInformationForStudent extends Component{
       return displayedClassroom.students.map(student => {
           let average = 0
           let counter = 0
+          let assignmentLength = assignmentIds.length
           student.grades.forEach(grade => {
-            if(assignmentIds.includes(grade.assignment_id)){
+            if(assignmentLength > 0 && assignmentIds.includes(grade.assignment_id)){
               average += grade.grade
               counter += 1
+              assignmentLength -=1
             }
           })
           if(counter > 0){
@@ -49,13 +51,17 @@ class TeacherInformationForStudent extends Component{
 
           return(
           <Table.Row key={student.id}>
-            <Table.Cell className="hover" id={student.id} onClick={this.onClick}>{`${student.firstName} ${student.lastName}`}</Table.Cell>
+            <Table.Cell textAlign="center" className="hover" id={student.id} onClick={this.onClick}>{`${student.firstName} ${student.lastName}`}</Table.Cell>
             {student.isAccount ?
-              <Table.Cell>{`${student.username}`}</Table.Cell>
+              <Table.Cell textAlign="center" >{`${student.username}`}</Table.Cell>
             :
-              <Table.Cell error><Icon name='attention' />{`${student.username}`}</Table.Cell>
+              <Table.Cell textAlign="center" error><Icon name='attention' />{`${student.username}`}</Table.Cell>
             }
-            <Table.Cell>{average}</Table.Cell>
+            {average > 65 ?
+              <Table.Cell textAlign="center" >{average}</Table.Cell>
+              :
+              <Table.Cell textAlign="center" error>{average}</Table.Cell>
+            }
           </Table.Row>
           )
         })
@@ -84,9 +90,9 @@ class TeacherInformationForStudent extends Component{
         {className}
         <Table color={'blue'} fixed compact singleLine >
           <Table.Row>
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Username</Table.HeaderCell>
-            <Table.HeaderCell>Average</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Name</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Username</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Average</Table.HeaderCell>
           </Table.Row>
           {students}
         </Table>
