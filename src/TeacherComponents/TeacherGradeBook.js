@@ -134,7 +134,7 @@ class TeacherGradeBook extends Component{
         <Divider hidden/>
         <Container fluid className="gradebook">
 
-          <Table fixed definition compact>
+          <Table fixed definition compact collapsing>
             <Table.Header>
               <Table.HeaderCell />
                 {assignments}
