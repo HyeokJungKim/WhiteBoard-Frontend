@@ -23,7 +23,11 @@ class TeacherGradeBook extends Component{
   renderAssignments = () => {
     const {displayedClassroom} = this.props
     if(this.props.validDisplay() && displayedClassroom.assignments.length > 0){
-      return displayedClassroom.assignments.map(assignment => {
+      let orderedAssignments = displayedClassroom.assignments.sort((a,b) => {
+        return a.assignment_id - b.assignment_id
+      })
+
+      return orderedAssignments.map(assignment => {
         return <Table.HeaderCell className="hover" id={assignment.id} onClick={this.editAssignment} textAlign="center" key={assignment.id}>{assignment.description}</Table.HeaderCell>
        })
     } else{
@@ -52,7 +56,12 @@ class TeacherGradeBook extends Component{
         let grades = student.grades.filter(grade =>{
           return assignmentIds.includes(grade.assignment_id)
         })
-        let filteredGrades = grades.map(grade => {
+
+        let orderedGrades = grades.sort((a,b) => {
+          return a.assignment_id - b.assignment_id
+        })
+
+        let filteredGrades = orderedGrades.map(grade => {
           if(grade.grade <= 65){
             return <Table.Cell negative className="hover redhover" textAlign="center" key={grade.id} id={grade.id} onClick={this.changeGrade}>{grade.grade}</Table.Cell>
           } else{
