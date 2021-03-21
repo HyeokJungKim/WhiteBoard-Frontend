@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000'
+const API = 'https://whiteboard-gradebook-backend.herokuapp.com'
 class StudentAdapter{
 
   static register(studentData){
