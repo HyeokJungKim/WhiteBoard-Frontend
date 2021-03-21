@@ -88,6 +88,10 @@ class TeacherInformationForStudent extends Component{
     return(
       <Container fluid>
         {className}
+        <p>Students with an exclamation mark have not yet activated their accounts.</p>
+        <p>Please reach out to them and have them activate their accounts by signing in!</p>
+        <p>Their password is the last 6 characters of their pre-assigned username.</p>
+
         <Table color={'blue'} fixed compact singleLine >
           <Table.Row>
             <Table.HeaderCell textAlign="center">Name</Table.HeaderCell>

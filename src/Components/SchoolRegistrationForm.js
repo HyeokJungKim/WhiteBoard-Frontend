@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Divider} from 'semantic-ui-react'
+import {Form, Divider} from 'semantic-ui-react'
 import SchoolAdapter from '../Adapters/SchoolAdapter'
 
 class SchoolRegistrationForm extends Component{
