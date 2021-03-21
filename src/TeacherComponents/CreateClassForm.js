@@ -25,9 +25,9 @@ class CreateClassForm extends Component{
         this.setState({error: resp.error})
       } else{
         if(this.props.firstTime){
-          this.props.history.push('/home')
-          this.props.closeFirstTime()
           this.props.initializeTeacher(resp)
+          this.props.closeFirstTime()
+          this.props.history.push('/home')
         }else{
           this.props.closeForm()
           this.props.addClassroom(resp)

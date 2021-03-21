@@ -1,5 +1,4 @@
 import {createStore, applyMiddleware} from 'redux'
-import initialize from './ActionCreators'
 import reducer from './Reducer'
 import thunk from 'redux-thunk';
 

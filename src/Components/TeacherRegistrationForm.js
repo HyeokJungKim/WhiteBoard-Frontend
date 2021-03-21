@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form, Button, Divider, Dropdown} from 'semantic-ui-react'
+import {Form, Divider, Dropdown} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import SchoolAdapter from '../Adapters/SchoolAdapter'
 import {connect} from 'react-redux'
@@ -147,7 +147,7 @@ class TeacherRegistrationForm extends Component{
          }
       </Form>
       <Divider hidden/>
-      <Button onClick={this.handleClick} disabled={this.state.isDisabled} content="Register"/>
+      <Form.Button onClick={this.handleClick} disabled={this.state.isDisabled}>Register Teacher</Form.Button>
     </div>
    )
  }

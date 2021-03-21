@@ -49,9 +49,9 @@ class SchoolRegistrationForm extends Component{
          <Form.Input onChange={this.handleChange} value={this.state.schoolName} label="School Name" name="schoolName" placeholder="School Name"/>
          <Form.Input onChange={this.handleChange} value={this.state.password} type="password" label="Password" name="password" placeholder="Password" />
          <Form.Input onChange={this.handleChange} value={this.state.passwordConfirmation} type="password" label="Password Confirmation" name="passwordConfirmation" placeholder="Password Confirmation" />
+         <Form.Button onClick={this.handleClick} disabled={this.state.isDisabled}>Register School</Form.Button>
       </Form>
       <Divider hidden/>
-      <Button onClick={this.handleClick} disabled={this.state.isDisabled} content="Register"/>
     </div>
    )
  }

@@ -23,8 +23,8 @@ class HomeContainer extends Component{
 
   componentDidMount = () => {
     TeacherAdapter.checkTeacher()
-      .then(json=>{
-        if(json.isTeacher){
+    .then(json=>{
+      if(json.isTeacher){
           TeacherAdapter.getClasses()
           .then(classes => {
             this.props.initializeTeacher(classes)

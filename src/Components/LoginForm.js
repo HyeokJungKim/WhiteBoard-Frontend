@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {Form, Button, Divider, Radio} from 'semantic-ui-react'
+import {Form,Radio} from 'semantic-ui-react'
 import TeacherAdapter from '../Adapters/TeacherAdapter'
 import StudentAdapter from '../Adapters/StudentAdapter'
 
@@ -91,9 +91,8 @@ class LoginForm extends Component{
           <Form.Field>
             <Radio className="dropwdown" label="I am a student" value="student" name="forWhom" checked={this.state.forWhom === "student"} onChange={this.handleRadio}/>
           </Form.Field>
+        <Form.Button onClick={this.handleClick} disabled={this.state.isDisabled}>Login</Form.Button>
         </Form>
-        <Divider hidden/>
-        <Button onClick={this.handleClick} disabled={this.state.isDisabled} content="Login"/>
       </div>
 
     )
