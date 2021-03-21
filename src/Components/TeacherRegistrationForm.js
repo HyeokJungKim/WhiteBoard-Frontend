@@ -84,7 +84,6 @@ class TeacherRegistrationForm extends Component{
   }
 
   setTeacher = () => {
-    debugger
     const {firstName, lastName, username, password, passwordConfirmation, schoolID} = this.state
     if(password === passwordConfirmation){
       const userInfo = {firstName, lastName, username, password, schoolID}
@@ -97,6 +96,7 @@ class TeacherRegistrationForm extends Component{
           TeacherAdapter.getClasses()
           .then(classes => {
             this.props.history.push('/create_first_class')
+            this.props.resetState()
           })
         }
       })

@@ -22,7 +22,7 @@ class LoginRegistrationForm extends Component{
           <Menu.Item name='Register' onClick={this.handleClick} active={activeItem ==='Register'}></Menu.Item>
         </Menu>
         <Segment attached="bottom">
-          {activeItem === 'Login' ? <LoginForm {...this.props}/> : <RegistrationForm {...this.props}/>}
+          {activeItem === 'Login' ? <LoginForm {...this.props}/> : <RegistrationForm {...this.props} resetState={this.props.resetState}/>}
         </Segment>
     </div>
     )

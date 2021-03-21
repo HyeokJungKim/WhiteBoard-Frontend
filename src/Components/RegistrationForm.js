@@ -47,7 +47,7 @@ class RegistrationForm extends Component{
           }
 
           {this.state.forWhom === "teacher" ?
-            <TeacherRegistrationForm {...this.props} showRadio={this.showRadio}/>
+            <TeacherRegistrationForm {...this.props} showRadio={this.showRadio} resetState={this.props.resetState}/>
               :
             <SchoolRegistrationForm {...this.props}/>
           }

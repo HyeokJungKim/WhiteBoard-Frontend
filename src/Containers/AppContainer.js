@@ -21,7 +21,7 @@ class AppContainer extends Component{
                 {localStorage.getItem('token') ?
                   <LoggedIn {...this.props}/>
                   :
-                  <LoginRegistrationForm {...this.props}/>
+                  <LoginRegistrationForm {...this.props} resetState={this.props.resetState}/>
                 }
               </Grid.Column>
             </Grid.Row>

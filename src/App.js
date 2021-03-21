@@ -21,10 +21,14 @@ class App extends Component {
     this.setState({firstTime: false, addClassForm: false})
   }
 
+  resetState = () => {
+    this.setState({ firstTime: true, addClassForm: true})
+  }
+
   render() {
     return (
       <Switch>
-        <Route path='/' exact render={(props) => <AppContainer {...props}/>}>
+        <Route path='/' exact render={(props) => <AppContainer {...props} resetState={this.resetState}/>}>
         </Route>
 
         <Route path='/register' render={(props) => <RegistrationContainer {...props}/>}>
@@ -35,7 +39,7 @@ class App extends Component {
         <Route path='/login' render={(props) => <LoginContainer {...props}/>}></Route>
 
         {localStorage.getItem('token') ?
-          <Route path='/home' render={(props) => <HomeContainer {...props}/> }></Route>
+          <Route path='/home' render={(props) => <HomeContainer {...props} /> }></Route>
             :
           <Redirect to='/'/> }
 
