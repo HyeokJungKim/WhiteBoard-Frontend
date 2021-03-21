@@ -41,7 +41,6 @@ class EditAssignmentForm extends Component{
       formData = new FormData()
       formData.append("pdf", this.state.file)
     }
-
     AssignmentAdapter.updateAssignment(this.props.assignmentID, assignmentData)
     .then(resp => {
       if(resp.error){

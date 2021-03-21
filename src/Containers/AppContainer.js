@@ -14,7 +14,7 @@ class AppContainer extends Component{
           <Grid>
             <Grid.Row>
               <Grid.Column width={9}>
-                <Image src="http://worldartsme.com/images/black-and-white-school-clipart-1.jpg" centered></Image>
+                <Image src="https://thecrayoninitiative.org/wp-content/uploads/2017/12/school.png" alt='school' centered></Image>
               </Grid.Column>
 
               <Grid.Column width={7}>
