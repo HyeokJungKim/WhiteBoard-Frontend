@@ -20,16 +20,16 @@ Password: abc123
 ## Language and Tools
 
 ### React
-- [Redux](https://redux.js.org/) - [Example]()
-- [Chart JS](https://www.chartjs.org/) - [Example]()
-- [React-Router](https://reactrouter.com/) - [Example]()
-- [Semantic UI React](https://react.semantic-ui.com/) - [Example]()
+- [Redux](https://redux.js.org/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Frontend/blob/master/src/Redux/Index.js#L5)
+- [Chart JS](https://www.chartjs.org/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Frontend/blob/master/src/TeacherComponents/OneStudentInfo.js#L26)
+- [React-Router](https://reactrouter.com/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Frontend/blob/master/src/App.js#L30)
+- [Semantic UI React](https://react.semantic-ui.com/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Frontend/blob/master/src/Containers/HomeContainer.js#L2)
 
-### [Rails API]()
-- [AWS S3 Storage](https://aws.amazon.com/s3/) - [Example]()
-- [JWT](https://jwt.io/) - [Example]()
-- [Active Model Serializer](https://github.com/rails-api/active_model_serializers) - [Example]() 
-- [Postgres](https://www.postgresql.org/) - [Example]()
+### [Rails API](https://github.com/HyeokJungKim/WhiteBoard-backend)
+- [AWS S3 Storage](https://aws.amazon.com/s3/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Backend/blob/master/config/environments/production.rb#L4)
+- [JWT](https://jwt.io/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Backend/blob/master/app/controllers/application_controller.rb#L11)
+- [Active Model Serializer](https://github.com/rails-api/active_model_serializers) - [Example](https://github.com/HyeokJungKm/WhiteBoard-Backend/blob/master/app/serializers/teacher_serializer.rb) 
+- [Postgres](https://www.postgresql.org/) - [Example](https://github.com/HyeokJungKim/WhiteBoard-Backend/blob/master/config/database.yml#L18)
 
 ## About
 
