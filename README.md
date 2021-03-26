@@ -1,4 +1,5 @@
 # WhiteBoard 
+This is the React Frontend for WhiteBoard - 
 A learning management system built for educators, teachers and students. Teachers can post and share grades as well as assignments for students and check on the progress of an individual student as well the progress for the entire class.
 
 Explore Online: <https://whiteboard-gradebook.netlify.app/>
