@@ -62,8 +62,8 @@ brew install node
 2. Clone down the project.
 
 ```
- git clone git@github.com:HyeokJungKim/Pokemon-Frontend.git
- cd Pokemon-Frontend
+git clone git@github.com:HyeokJungKim/WhiteBoard-Frontend.git
+cd Pokemon-Frontend
 ```
 
 3. Download all the dependencies.
